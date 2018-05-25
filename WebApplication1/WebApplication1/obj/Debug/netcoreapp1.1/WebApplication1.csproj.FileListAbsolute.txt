@@ -13,7 +13,6 @@ C:\Users\Felkin\Documents\GitHub\IT_projektas\WebApplication1\WebApplication1\bi
 C:\Users\Felkin\Documents\GitHub\IT_projektas\WebApplication1\WebApplication1\bin\Debug\netcoreapp1.1\WebApplication1.runtimeconfig.dev.json
 C:\Users\Felkin\Documents\GitHub\IT_projektas\WebApplication1\WebApplication1\bin\Debug\netcoreapp1.1\WebApplication1.dll
 C:\Users\Felkin\Documents\GitHub\IT_projektas\WebApplication1\WebApplication1\bin\Debug\netcoreapp1.1\WebApplication1.pdb
-C:\Users\Felkin\Documents\GitHub\IT_projektas\WebApplication1\WebApplication1\obj\Debug\netcoreapp1.1\WebApplication1.csprojAssemblyReference.cache
 C:\Users\Felkin\Documents\GitHub\IT_projektas\WebApplication1\WebApplication1\obj\Debug\netcoreapp1.1\WebApplication1.csproj.CoreCompileInputs.cache
 C:\Users\Felkin\Documents\GitHub\IT_projektas\WebApplication1\WebApplication1\obj\Debug\netcoreapp1.1\WebApplication1.AssemblyInfoInputs.cache
 C:\Users\Felkin\Documents\GitHub\IT_projektas\WebApplication1\WebApplication1\obj\Debug\netcoreapp1.1\WebApplication1.AssemblyInfo.cs
@@ -29,3 +28,4 @@ C:\Users\jurci\Desktop\IT projekatas\WebApplication1\WebApplication1\obj\Debug\n
 C:\Users\jurci\Desktop\IT projekatas\WebApplication1\WebApplication1\obj\Debug\netcoreapp1.1\WebApplication1.AssemblyInfo.cs
 C:\Users\jurci\Desktop\IT projekatas\WebApplication1\WebApplication1\obj\Debug\netcoreapp1.1\WebApplication1.dll
 C:\Users\jurci\Desktop\IT projekatas\WebApplication1\WebApplication1\obj\Debug\netcoreapp1.1\WebApplication1.pdb
+C:\Users\Felkin\Documents\GitHub\IT_projektas\WebApplication1\WebApplication1\obj\Debug\netcoreapp1.1\WebApplication1.csprojAssemblyReference.cache
