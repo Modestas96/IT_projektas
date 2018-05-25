@@ -15,7 +15,7 @@ namespace UML_proj.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Your application description page222.";
 
             return View();
         }
