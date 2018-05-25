@@ -9,12 +9,17 @@ namespace UML_proj.Controllers
     public class NewsletterController : Controller
     {
         // GET: NewsletterForm
-        public ActionResult NewsletterForm() // open_form
+        public ActionResult open_form() // open_form
         {
-            return View();
+            return View("NewsletterForm");
         }
-        public void Send_new_entry() // send_new_entry
+
+        [HttpPost]
+        public ActionResult send_new_entry(Models.Newsletter newsletter) // send_new_entry
         {
+
+            ViewData["value"] = newsletter.Content+"\nmessage sent!";
+            return View("NewsletterForm");
             /*
             newsletter_entries = newsletter_entry.select();
             total = newsletter_entries.count();

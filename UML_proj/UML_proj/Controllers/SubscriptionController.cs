@@ -9,14 +9,14 @@ namespace UML_proj.Controllers
     public class SubscriptionController : Controller
     {
         // GET: ProfilePage
-        public ActionResult ProfilePage() // open_profile_page()
+        public ActionResult open_profile_page() // open_profile_page()
         {
-            return View();
+            return View("ProfilePage");
         }
 
-        public ActionResult SubscriptionList() // open_subscription_list()
+        public ActionResult open_subscription_list() // open_subscription_list()
         {
-            return View();
+            return View("SubscriptionList");
         }
 
 
