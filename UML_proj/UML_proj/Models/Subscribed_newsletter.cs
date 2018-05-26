@@ -14,15 +14,12 @@ namespace UML_proj.Models
     
     public partial class Subscribed_newsletter
     {
-        public string Pateikimo_forma { get; set; }
-        public int id_Subscribed_newsletter { get; set; }
-        public int fk_Userid_Person { get; set; }
-        public int fk_Newsletterid_Newsletter { get; set; }
-        public int fk_Personid_Person { get; set; }
-        public int fk_Personid_Person1 { get; set; }
+        public string receit_form { get; set; }
+        public int id { get; set; }
+        public int fk_subscriber_id { get; set; }
+        public int fk_newsletter_id { get; set; }
     
         public virtual Newsletter Newsletter { get; set; }
         public virtual Person Person { get; set; }
-        public virtual regUser regUser { get; set; }
     }
 }

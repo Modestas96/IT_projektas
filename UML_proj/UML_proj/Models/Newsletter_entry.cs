@@ -27,14 +27,12 @@ namespace UML_proj.Models
             for (int i = 0; i < obj.Length; i++)
             {
                 db.Newsletter_entry.Add(obj[i]);
-                db.SaveChanges();
             }
         }
         public void insert(Newsletter_entry obj)
         {
             IT_PROJEKTASEntities db = new IT_PROJEKTASEntities();
             db.Newsletter_entry.Add(obj);
-            db.SaveChanges();
         }
 
         public virtual Newsletter Newsletter { get; set; }

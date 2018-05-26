@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using UML_proj.Models;
 
 namespace UML_proj.Controllers
 {
@@ -15,20 +16,33 @@ namespace UML_proj.Controllers
             return View("NewsletterForm");
         }
 
-        public ActionResult send_new_entry(Models.Newsletter newsletter) // send_new_entry
+        public ActionResult send_new_entry(Newsletter newsletter) // send_new_entry
         {
             ViewData["value"] = newsletter.content + "\nmessage sent!";
             //ViewBag.Message = newsletter.content + "\nmessage sent!";
-            var id = Session["UserID"].ToString();
-            newsletter.fk_person_id = Int32.Parse(id);
-            newsletter.insert(newsletter);
-            ViewBag.Message = newsletter.toString1();
+            int id = Int32.Parse(Session["UserID"].ToString());
+            newsletter.fk_person_id = id;
 
-            
-
-            // Here we have 3 steps:
             // 1. update the approriate sub's content with the newest one.
-            // 2. select all user ids who sub'd to this newsletter
+            var state = newsletter.update_newest_entry();
+            //ViewBag.Message = newsletter.toString1();
+            string str1 = "";
+            if (state)
+            {
+                str1 = "Successfully sent your message! Total subs receiving this message: ";
+            }
+            else
+            {
+                str1 = "Message sent failed!";
+            }
+
+
+            // 2. select all subed_newsletter who sub'd to this newsletter
+            var entries = select(id, true);
+
+            str1 += entries.Count();
+
+
             // 3. generate newsletter_entries
             // 4. reselect all the entries (not rly neccessary)
             // 5. initiate the sending sequence below
@@ -63,7 +77,40 @@ namespace UML_proj.Controllers
 
             }
             */
+            ViewBag.Message = str1;
             return View("NewsletterForm");
+        }
+
+        public List<SNDTO> select(int id, bool newsletter)
+        {
+            // newsletter == true : all subs of this newsletter. false = a single person's sub list
+            IT_PROJEKTASEntities db = new IT_PROJEKTASEntities();
+            if (newsletter)
+            {
+                var dataset = db.Subscribed_newsletter
+                    .Where(x => x.fk_newsletter_id == id)
+                    .Select(x => new SNDTO
+                    {
+                        receit_form = x.receit_form,
+                        id = x.id,
+                        fk_subscriber_id = x.fk_subscriber_id,
+                        fk_newsletter_id = x.fk_newsletter_id
+                    }).ToList();
+                return dataset;
+            }
+            else
+            {
+                var dataset = db.Subscribed_newsletter
+                    .Where(x => x.fk_subscriber_id == id)
+                    .Select(x => new SNDTO
+                    {
+                        receit_form = x.receit_form,
+                        id = x.id,
+                        fk_subscriber_id = x.fk_subscriber_id,
+                        fk_newsletter_id = x.fk_newsletter_id
+                    }).ToList();
+                return dataset;
+            }
         }
     }
 }

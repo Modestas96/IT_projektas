@@ -18,7 +18,6 @@ namespace UML_proj.Models
         public regUser()
         {
             this.Newsletter_entry = new HashSet<Newsletter_entry>();
-            this.Subscribed_newsletter = new HashSet<Subscribed_newsletter>();
         }
     
         public string Salis { get; set; }
@@ -34,7 +33,5 @@ namespace UML_proj.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Newsletter_entry> Newsletter_entry { get; set; }
         public virtual Person Person { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Subscribed_newsletter> Subscribed_newsletter { get; set; }
     }
 }

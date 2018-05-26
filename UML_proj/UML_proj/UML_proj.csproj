@@ -214,6 +214,7 @@
     <Compile Include="Models\Shop.cs">
       <DependentUpon>ITProjektasDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SNDTO.cs" />
     <Compile Include="Models\Subscribed_newsletter.cs">
       <DependentUpon>ITProjektasDB.tt</DependentUpon>
     </Compile>

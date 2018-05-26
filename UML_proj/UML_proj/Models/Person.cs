@@ -22,7 +22,6 @@ namespace UML_proj.Models
             this.Subscribed_newsletter = new HashSet<Subscribed_newsletter>();
             this.Shops = new HashSet<Shop>();
         }
-
     
         public string Vardas { get; set; }
         public string Pavarde { get; set; }
