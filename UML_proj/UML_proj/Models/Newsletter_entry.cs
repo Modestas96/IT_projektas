@@ -20,7 +20,21 @@ namespace UML_proj.Models
         public int fk_Userid_Person { get; set; }
         public int fk_Newsletterid_Newsletter { get; set; }
         public int fk_Newsletterid_Newsletter1 { get; set; }
-    
+
+        public void insert(Newsletter_entry[] obj)
+        {
+            IT_PROJEKTASEntities db = new IT_PROJEKTASEntities();
+            for (int i = 0; i < obj.Length; i++)
+            {
+                db.Newsletter_entry.Add(obj[i]);
+            }
+        }
+        public void insert(Newsletter_entry obj)
+        {
+            IT_PROJEKTASEntities db = new IT_PROJEKTASEntities();
+            db.Newsletter_entry.Add(obj);
+        }
+
         public virtual Newsletter Newsletter { get; set; }
         public virtual Newsletter Newsletter1 { get; set; }
         public virtual regUser regUser { get; set; }

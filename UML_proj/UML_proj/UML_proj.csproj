@@ -215,6 +215,7 @@
     <Compile Include="Models\Shop.cs">
       <DependentUpon>ITProjektasDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SNDTO.cs" />
     <Compile Include="Models\Subscribed_newsletter.cs">
       <DependentUpon>ITProjektasDB.tt</DependentUpon>
     </Compile>
@@ -285,7 +286,8 @@
     <Content Include="Views\Subscription\ProfilePage.cshtml" />
     <Content Include="Views\Newsletter\NewsletterForm.cshtml" />
     <Content Include="Views\Subscription\SubscriptionList.cshtml" />
-    <Content Include="Views\LearningParameters\LearningParametersForm.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\UserDashBoard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

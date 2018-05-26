@@ -11,7 +11,8 @@ namespace UML_proj.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Linq;
+
     public partial class Newsletter
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,6 +27,38 @@ namespace UML_proj.Models
         public int pk_id { get; set; }
         public int fk_person_id { get; set; }
     
+
+        public void insert()
+        {
+            IT_PROJEKTASEntities db = new IT_PROJEKTASEntities();
+      
+            db.Newsletters.Add(this);
+            db.SaveChanges();       
+        }
+
+        public bool update_newest_entry()
+        {
+            using (var db = new IT_PROJEKTASEntities())
+            {
+                var result = db.Newsletters.SingleOrDefault(b => b.fk_person_id == fk_person_id);
+                if (result != null)
+                {
+                    result.content = content;
+                    db.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        public string toString1()
+        {
+            return content + " " + fk_person_id.ToString();
+        }
+
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Newsletter_entry> Newsletter_entry { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

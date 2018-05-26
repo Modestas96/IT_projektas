@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using UML_proj.Models;
 
 namespace UML_proj.Controllers
 {
@@ -11,6 +12,41 @@ namespace UML_proj.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+        public ActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(Person objUser)
+        {
+            if (ModelState.IsValid)
+            {
+                IT_PROJEKTASEntities db = new IT_PROJEKTASEntities();
+                //Search_parameters param = db.Search_parameters.SingleOrDefault(x => x.id_Search_parameters == 2);
+                
+                var obj = db.People.Where(a => a.Vardas.Equals(objUser.Vardas) && a.Slaptažodis.Equals(objUser.Slaptažodis)).FirstOrDefault();
+                if (obj != null)
+                {
+                    Session["UserID"] = obj.id_Person.ToString();
+                    Session["UserName"] = obj.Vardas.ToString();
+                    return RedirectToAction("UserDashBoard");
+                }
+            }
+            return View(objUser);
+        }
+
+        public ActionResult UserDashBoard()
+        {
+            if (Session["UserID"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         public ActionResult About()
