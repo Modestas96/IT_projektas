@@ -15,6 +15,7 @@ namespace UML_proj.Models
 
     public partial class Newsletter
     {
+        IT_PROJEKTASEntities db = new IT_PROJEKTASEntities();
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Newsletter()
         {
@@ -30,27 +31,22 @@ namespace UML_proj.Models
 
         public void insert()
         {
-            IT_PROJEKTASEntities db = new IT_PROJEKTASEntities();
-      
             db.Newsletters.Add(this);
             db.SaveChanges();       
         }
 
         public bool update_newest_entry()
         {
-            using (var db = new IT_PROJEKTASEntities())
+            var result = db.Newsletters.SingleOrDefault(b => b.fk_person_id == fk_person_id);
+            if (result != null)
             {
-                var result = db.Newsletters.SingleOrDefault(b => b.fk_person_id == fk_person_id);
-                if (result != null)
-                {
-                    result.content = content;
-                    db.SaveChanges();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                result.content = content;
+                db.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
         public string toString1()
