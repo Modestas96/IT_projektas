@@ -12,26 +12,37 @@ namespace UML_proj.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Newsletter
+    public partial class Person
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Newsletter()
+        public Person()
         {
-            this.Newsletter_entry = new HashSet<Newsletter_entry>();
-            this.Newsletter_entry1 = new HashSet<Newsletter_entry>();
+            this.Newsletters = new HashSet<Newsletter>();
+            this.Owner_person_adapter = new HashSet<Owner_person_adapter>();
             this.Subscribed_newsletter = new HashSet<Subscribed_newsletter>();
+            this.Shops = new HashSet<Shop>();
         }
     
-        public string Turinys { get; set; }
-        public int id_Newsletter { get; set; }
-        public int fk_Personid_Person { get; set; }
+        public string Vardas { get; set; }
+        public string Pavarde { get; set; }
+        public string El_Paštas { get; set; }
+        public string Slaptažodis { get; set; }
+        public string Discord_Id { get; set; }
+        public Nullable<System.DateTime> Paskutinis_prisijungimas { get; set; }
+        public Nullable<System.DateTime> Registravimosi_data { get; set; }
+        public string Busena { get; set; }
+        public int id_Person { get; set; }
     
+        public virtual Admin Admin { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Newsletter_entry> Newsletter_entry { get; set; }
+        public virtual ICollection<Newsletter> Newsletters { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Newsletter_entry> Newsletter_entry1 { get; set; }
+        public virtual ICollection<Owner_person_adapter> Owner_person_adapter { get; set; }
+        public virtual regUser regUser { get; set; }
+        public virtual Seller Seller { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Subscribed_newsletter> Subscribed_newsletter { get; set; }
-        public virtual Person Person { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Shop> Shops { get; set; }
     }
 }

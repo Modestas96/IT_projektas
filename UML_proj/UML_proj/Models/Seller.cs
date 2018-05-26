@@ -12,26 +12,19 @@ namespace UML_proj.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Newsletter
+    public partial class Seller
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Newsletter()
+        public Seller()
         {
             this.Newsletter_entry = new HashSet<Newsletter_entry>();
-            this.Newsletter_entry1 = new HashSet<Newsletter_entry>();
-            this.Subscribed_newsletter = new HashSet<Subscribed_newsletter>();
         }
     
-        public string Turinys { get; set; }
-        public int id_Newsletter { get; set; }
-        public int fk_Personid_Person { get; set; }
+        public string imones_kodas { get; set; }
+        public int id_Person { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Newsletter_entry> Newsletter_entry { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Newsletter_entry> Newsletter_entry1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Subscribed_newsletter> Subscribed_newsletter { get; set; }
         public virtual Person Person { get; set; }
     }
 }

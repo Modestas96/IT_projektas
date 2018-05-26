@@ -12,26 +12,23 @@ namespace UML_proj.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Newsletter
+    public partial class Shop
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Newsletter()
+        public Shop()
         {
-            this.Newsletter_entry = new HashSet<Newsletter_entry>();
-            this.Newsletter_entry1 = new HashSet<Newsletter_entry>();
-            this.Subscribed_newsletter = new HashSet<Subscribed_newsletter>();
+            this.Products = new HashSet<Product>();
+            this.Product_in_shop = new HashSet<Product_in_shop>();
         }
     
-        public string Turinys { get; set; }
-        public int id_Newsletter { get; set; }
+        public string Pavadinimas { get; set; }
+        public int id_Shop { get; set; }
         public int fk_Personid_Person { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Newsletter_entry> Newsletter_entry { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Newsletter_entry> Newsletter_entry1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Subscribed_newsletter> Subscribed_newsletter { get; set; }
         public virtual Person Person { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Products { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product_in_shop> Product_in_shop { get; set; }
     }
 }

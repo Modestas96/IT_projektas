@@ -12,26 +12,29 @@ namespace UML_proj.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Newsletter
+    public partial class regUser
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Newsletter()
+        public regUser()
         {
             this.Newsletter_entry = new HashSet<Newsletter_entry>();
-            this.Newsletter_entry1 = new HashSet<Newsletter_entry>();
             this.Subscribed_newsletter = new HashSet<Subscribed_newsletter>();
         }
     
-        public string Turinys { get; set; }
-        public int id_Newsletter { get; set; }
-        public int fk_Personid_Person { get; set; }
+        public string Salis { get; set; }
+        public string Miestas { get; set; }
+        public string Rajonas { get; set; }
+        public string Gatve { get; set; }
+        public string Buto_numeris { get; set; }
+        public Nullable<int> Gimimo_metai { get; set; }
+        public string Gimimo_menesis { get; set; }
+        public Nullable<int> Gimimo_diena { get; set; }
+        public int id_Person { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Newsletter_entry> Newsletter_entry { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Newsletter_entry> Newsletter_entry1 { get; set; }
+        public virtual Person Person { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Subscribed_newsletter> Subscribed_newsletter { get; set; }
-        public virtual Person Person { get; set; }
     }
 }
