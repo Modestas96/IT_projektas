@@ -25,6 +25,7 @@ namespace UML_proj.Controllers
             }
             return View("LearningParametersForm", updatedParameters);
         }
+
         public ActionResult LearningParametersForm()
         {
             IT_PROJEKTASEntities db = new IT_PROJEKTASEntities();
