@@ -18,8 +18,21 @@ namespace UML_proj.Controllers
         public ActionResult send_new_entry(Models.Newsletter newsletter) // send_new_entry
         {
             ViewData["value"] = newsletter.content + "\nmessage sent!";
-            ViewBag.Message = newsletter.content + "\nmessage sent!";
-            return View("NewsletterForm");
+            //ViewBag.Message = newsletter.content + "\nmessage sent!";
+            var id = Session["UserID"].ToString();
+            newsletter.fk_person_id = Int32.Parse(id);
+            newsletter.insert(newsletter);
+            ViewBag.Message = newsletter.toString1();
+
+            
+
+            // Here we have 3 steps:
+            // 1. update the approriate sub's content with the newest one.
+            // 2. select all user ids who sub'd to this newsletter
+            // 3. generate newsletter_entries
+            // 4. reselect all the entries (not rly neccessary)
+            // 5. initiate the sending sequence below
+
             /*
             newsletter_entries = newsletter_entry.select();
             total = newsletter_entries.count();
@@ -50,6 +63,7 @@ namespace UML_proj.Controllers
 
             }
             */
+            return View("NewsletterForm");
         }
     }
 }

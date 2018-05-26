@@ -26,6 +26,20 @@ namespace UML_proj.Models
         public int pk_id { get; set; }
         public int fk_person_id { get; set; }
     
+
+        public void insert(Newsletter obj)
+        {
+            IT_PROJEKTASEntities db = new IT_PROJEKTASEntities();
+            db.Newsletters.Add(obj);
+            db.SaveChanges();
+            
+        }
+        public string toString1()
+        {
+            return content + " " + fk_person_id.ToString();
+        }
+
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Newsletter_entry> Newsletter_entry { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
