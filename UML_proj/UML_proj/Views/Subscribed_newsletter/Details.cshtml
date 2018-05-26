@@ -1,0 +1,43 @@
+﻿@model UML_proj.Models.Subscribed_newsletter
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Subscribed_newsletter</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.receit_form)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.receit_form)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Newsletter.content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Newsletter.content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Person.Vardas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Person.Vardas)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

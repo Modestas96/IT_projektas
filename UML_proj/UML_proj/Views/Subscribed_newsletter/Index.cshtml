@@ -1,0 +1,46 @@
+﻿@model IEnumerable<UML_proj.Models.Subscribed_newsletter>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.receit_form)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Newsletter.content)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Person.Vardas)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.receit_form)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Newsletter.content)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Person.Vardas)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
