@@ -5,38 +5,38 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="2eee8cfedc714bd683443fcc5d350a7b" Name="Diagram1">
-        <EntityTypeShape EntityType="IT_PROJEKTASModel.Admin" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="IT_PROJEKTASModel.Newsletter" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="IT_PROJEKTASModel.Newsletter_entry" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="IT_PROJEKTASModel.NullObjectOwner" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="IT_PROJEKTASModel.Owner_person_adapter" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="IT_PROJEKTASModel.Person" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="IT_PROJEKTASModel.Product" Width="1.5" PointX="5.25" PointY="18.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="IT_PROJEKTASModel.Product_in_shop" Width="1.5" PointX="7.5" PointY="19" IsExpanded="true" />
-        <EntityTypeShape EntityType="IT_PROJEKTASModel.regUser" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="IT_PROJEKTASModel.Search_parameters" Width="1.5" PointX="5.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="IT_PROJEKTASModel.Seller" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
-        <EntityTypeShape EntityType="IT_PROJEKTASModel.Shop" Width="1.5" PointX="3" PointY="19" IsExpanded="true" />
-        <EntityTypeShape EntityType="IT_PROJEKTASModel.Subscribed_newsletter" Width="1.5" PointX="5.25" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="IT_PROJEKTASModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="IT_PROJEKTASModel.Unclassified_pictures" Width="1.5" PointX="8" PointY="1.125" IsExpanded="true" />
-        <AssociationConnector Association="IT_PROJEKTASModel.FK__Admin__id_Person__339FAB6E" ManuallyRouted="false" />
-        <AssociationConnector Association="IT_PROJEKTASModel.FK__Newslette__fk_Ne__4C6B5938" ManuallyRouted="false" />
-        <AssociationConnector Association="IT_PROJEKTASModel.generuoja" ManuallyRouted="false" />
-        <AssociationConnector Association="IT_PROJEKTASModel.prenumeruoja1" ManuallyRouted="false" />
-        <AssociationConnector Association="IT_PROJEKTASModel.rašo" ManuallyRouted="false" />
-        <AssociationConnector Association="IT_PROJEKTASModel.FK__Newslette__fk_Us__4B7734FF" ManuallyRouted="false" />
-        <AssociationConnector Association="IT_PROJEKTASModel.Raso" ManuallyRouted="false" />
-        <AssociationConnector Association="IT_PROJEKTASModel.adopts" ManuallyRouted="false" />
-        <AssociationConnector Association="IT_PROJEKTASModel.FK__regUser__id_Pers__46B27FE2" ManuallyRouted="false" />
-        <AssociationConnector Association="IT_PROJEKTASModel.FK__Seller__id_Perso__3E1D39E1" ManuallyRouted="false" />
-        <AssociationConnector Association="IT_PROJEKTASModel.FK__Subscribe__fk_Pe__55009F39" ManuallyRouted="false" />
-        <AssociationConnector Association="IT_PROJEKTASModel.Valdo" ManuallyRouted="false" />
-        <AssociationConnector Association="IT_PROJEKTASModel.Priklauso2" ManuallyRouted="false" />
-        <AssociationConnector Association="IT_PROJEKTASModel.Priklauso3" ManuallyRouted="false" />
-        <AssociationConnector Association="IT_PROJEKTASModel.Turi" ManuallyRouted="false" />
-        <AssociationConnector Association="IT_PROJEKTASModel.Prenumeruoja" ManuallyRouted="false" />
-        <AssociationConnector Association="IT_PROJEKTASModel.Priklauso1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="IT_PROJEKTASModel.Admin" Width="1.5" PointX="3" PointY="4" />
+        <EntityTypeShape EntityType="IT_PROJEKTASModel.Newsletter" Width="1.5" PointX="3" PointY="8.875" />
+        <EntityTypeShape EntityType="IT_PROJEKTASModel.Newsletter_entry" Width="1.5" PointX="5.25" PointY="15.75" />
+        <EntityTypeShape EntityType="IT_PROJEKTASModel.NullObjectOwner" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="IT_PROJEKTASModel.Owner_person_adapter" Width="1.5" PointX="3" PointY="6.5" />
+        <EntityTypeShape EntityType="IT_PROJEKTASModel.Person" Width="1.5" PointX="0.75" PointY="10.625" />
+        <EntityTypeShape EntityType="IT_PROJEKTASModel.Product" Width="1.5" PointX="5.25" PointY="12" />
+        <EntityTypeShape EntityType="IT_PROJEKTASModel.Product_in_shop" Width="1.5" PointX="7.5" PointY="9.375" />
+        <EntityTypeShape EntityType="IT_PROJEKTASModel.regUser" Width="1.5" PointX="3" PointY="15.625" />
+        <EntityTypeShape EntityType="IT_PROJEKTASModel.Search_parameters" Width="1.5" PointX="5.75" PointY="0.875" />
+        <EntityTypeShape EntityType="IT_PROJEKTASModel.Seller" Width="1.5" PointX="3" PointY="19.75" />
+        <EntityTypeShape EntityType="IT_PROJEKTASModel.Shop" Width="1.5" PointX="3" PointY="12.375" />
+        <EntityTypeShape EntityType="IT_PROJEKTASModel.Subscribed_newsletter" Width="1.5" PointX="8.25" PointY="12.5" />
+        <EntityTypeShape EntityType="IT_PROJEKTASModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="IT_PROJEKTASModel.Unclassified_pictures" Width="1.5" PointX="8" PointY="1.125" />
+        <AssociationConnector Association="IT_PROJEKTASModel.FK__Admin__id_Person__339FAB6E" />
+        <AssociationConnector Association="IT_PROJEKTASModel.FK__Newslette__fk_Ne__4C6B5938" />
+        <AssociationConnector Association="IT_PROJEKTASModel.generuoja" />
+        <AssociationConnector Association="IT_PROJEKTASModel.prenumeruoja1" />
+        <AssociationConnector Association="IT_PROJEKTASModel.rašo" />
+        <AssociationConnector Association="IT_PROJEKTASModel.FK__Newslette__fk_Us__4B7734FF" />
+        <AssociationConnector Association="IT_PROJEKTASModel.Raso" />
+        <AssociationConnector Association="IT_PROJEKTASModel.adopts" />
+        <AssociationConnector Association="IT_PROJEKTASModel.FK__regUser__id_Pers__46B27FE2" />
+        <AssociationConnector Association="IT_PROJEKTASModel.FK__Seller__id_Perso__3E1D39E1" />
+        <AssociationConnector Association="IT_PROJEKTASModel.FK__Subscribe__fk_Pe__55009F39" />
+        <AssociationConnector Association="IT_PROJEKTASModel.Valdo" />
+        <AssociationConnector Association="IT_PROJEKTASModel.Priklauso2" />
+        <AssociationConnector Association="IT_PROJEKTASModel.Priklauso3" />
+        <AssociationConnector Association="IT_PROJEKTASModel.Turi" />
+        <AssociationConnector Association="IT_PROJEKTASModel.Prenumeruoja" />
+        <AssociationConnector Association="IT_PROJEKTASModel.Priklauso1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

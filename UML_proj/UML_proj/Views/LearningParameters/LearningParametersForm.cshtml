@@ -1,4 +1,5 @@
 ﻿@model UML_proj.Models.Search_parameters
+
 @{
     ViewBag.Title = "LearningParametersForm";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,10 +7,54 @@
 
 <h2>LearningParametersForm</h2>
 
-@if (Model != null)
+@using (Html.BeginForm("Update", "LearningParameters", FormMethod.Post)) 
 {
-    <h2>Hey</h2>
-    <h3>Learning Parameter ID: @Model.id_Search_parameters</h3>
-    <h3>Learning Parameter Step_size: @Model.Apsimokymo_greitis</h3>
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Search_parameters</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Apsimokymo_greitis, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Apsimokymo_greitis, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Apsimokymo_greitis, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Svoriai, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Svoriai, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Svoriai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Optimizavimo_metodas, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Optimizavimo_metodas, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Optimizavimo_metodas, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Yra_pagrindinis, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Yra_pagrindinis, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Yra_pagrindinis, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
 }
 
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\jurci\Desktop\IT projekatas\UML_proj\UML_proj\Models\ITProjektasDB.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\jurci\Desktop\IT projektas\IT_projektas\UML_proj\UML_proj\Models\ITProjektasDB.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

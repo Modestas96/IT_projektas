@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="IT_PROJEKTASModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="IT_PROJEKTASModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="id_Person" />
@@ -15,11 +15,11 @@
         </EntityType>
         <EntityType Name="Newsletter">
           <Key>
-            <PropertyRef Name="id_Newsletter" />
+            <PropertyRef Name="pk_id" />
           </Key>
-          <Property Name="Turinys" Type="varchar" MaxLength="255" />
-          <Property Name="id_Newsletter" Type="int" Nullable="false" />
-          <Property Name="fk_Personid_Person" Type="int" Nullable="false" />
+          <Property Name="content" Type="varchar" MaxLength="255" />
+          <Property Name="pk_id" Type="int" Nullable="false" />
+          <Property Name="fk_person_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Newsletter_entry">
           <Key>
@@ -103,7 +103,7 @@
           <Property Name="Svoriai" Type="text" />
           <Property Name="Optimizavimo_metodas" Type="varchar" MaxLength="225" />
           <Property Name="Yra_pagrindinis" Type="bit" />
-          <Property Name="id_Search_parameters" Type="int" Nullable="false" />
+          <Property Name="id_Search_parameters" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Seller">
           <Key>
@@ -141,12 +141,6 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="testas">
-          <Property Name="id" Type="int" />
-          <Property Name="vardas" Type="varchar" MaxLength="20" />
-        </EntityType>-->
         <EntityType Name="Unclassified_pictures">
           <Key>
             <PropertyRef Name="id_Unclassified_pictures" />
@@ -184,7 +178,7 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           <End Role="Newsletter_entry" Type="Self.Newsletter_entry" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Newsletter">
-              <PropertyRef Name="id_Newsletter" />
+              <PropertyRef Name="pk_id" />
             </Principal>
             <Dependent Role="Newsletter_entry">
               <PropertyRef Name="fk_Newsletterid_Newsletter" />
@@ -244,7 +238,7 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           <End Role="Newsletter_entry" Type="Self.Newsletter_entry" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Newsletter">
-              <PropertyRef Name="id_Newsletter" />
+              <PropertyRef Name="pk_id" />
             </Principal>
             <Dependent Role="Newsletter_entry">
               <PropertyRef Name="fk_Newsletterid_Newsletter1" />
@@ -268,7 +262,7 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           <End Role="Subscribed_newsletter" Type="Self.Subscribed_newsletter" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Newsletter">
-              <PropertyRef Name="id_Newsletter" />
+              <PropertyRef Name="pk_id" />
             </Principal>
             <Dependent Role="Subscribed_newsletter">
               <PropertyRef Name="fk_Newsletterid_Newsletter" />
@@ -331,7 +325,7 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
               <PropertyRef Name="id_Person" />
             </Principal>
             <Dependent Role="Newsletter">
-              <PropertyRef Name="fk_Personid_Person" />
+              <PropertyRef Name="fk_person_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -444,11 +438,95 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
             <End Role="Shop" EntitySet="Shop" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="IT_PROJEKTASModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="IT_PROJEKTASEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="IT_PROJEKTASModel.Admin" />
+          <EntitySet Name="Newsletters" EntityType="IT_PROJEKTASModel.Newsletter" />
+          <EntitySet Name="Newsletter_entry" EntityType="IT_PROJEKTASModel.Newsletter_entry" />
+          <EntitySet Name="NullObjectOwners" EntityType="IT_PROJEKTASModel.NullObjectOwner" />
+          <EntitySet Name="Owner_person_adapter" EntityType="IT_PROJEKTASModel.Owner_person_adapter" />
+          <EntitySet Name="People" EntityType="IT_PROJEKTASModel.Person" />
+          <EntitySet Name="Products" EntityType="IT_PROJEKTASModel.Product" />
+          <EntitySet Name="Product_in_shop" EntityType="IT_PROJEKTASModel.Product_in_shop" />
+          <EntitySet Name="regUsers" EntityType="IT_PROJEKTASModel.regUser" />
+          <EntitySet Name="Search_parameters" EntityType="IT_PROJEKTASModel.Search_parameters" />
+          <EntitySet Name="Sellers" EntityType="IT_PROJEKTASModel.Seller" />
+          <EntitySet Name="Shops" EntityType="IT_PROJEKTASModel.Shop" />
+          <EntitySet Name="Subscribed_newsletter" EntityType="IT_PROJEKTASModel.Subscribed_newsletter" />
+          <EntitySet Name="sysdiagrams" EntityType="IT_PROJEKTASModel.sysdiagram" />
+          <EntitySet Name="Unclassified_pictures" EntityType="IT_PROJEKTASModel.Unclassified_pictures" />
+          <AssociationSet Name="FK__Admin__id_Person__339FAB6E" Association="IT_PROJEKTASModel.FK__Admin__id_Person__339FAB6E">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Admin" EntitySet="Admins" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Newslette__fk_Ne__4C6B5938" Association="IT_PROJEKTASModel.FK__Newslette__fk_Ne__4C6B5938">
+            <End Role="Newsletter" EntitySet="Newsletters" />
+            <End Role="Newsletter_entry" EntitySet="Newsletter_entry" />
+          </AssociationSet>
+          <AssociationSet Name="generuoja" Association="IT_PROJEKTASModel.generuoja">
+            <End Role="Newsletter" EntitySet="Newsletters" />
+            <End Role="Newsletter_entry" EntitySet="Newsletter_entry" />
+          </AssociationSet>
+          <AssociationSet Name="prenumeruoja1" Association="IT_PROJEKTASModel.prenumeruoja1">
+            <End Role="Newsletter" EntitySet="Newsletters" />
+            <End Role="Subscribed_newsletter" EntitySet="Subscribed_newsletter" />
+          </AssociationSet>
+          <AssociationSet Name="rašo" Association="IT_PROJEKTASModel.rašo">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Newsletter" EntitySet="Newsletters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Newslette__fk_Us__4B7734FF" Association="IT_PROJEKTASModel.FK__Newslette__fk_Us__4B7734FF">
+            <End Role="regUser" EntitySet="regUsers" />
+            <End Role="Newsletter_entry" EntitySet="Newsletter_entry" />
+          </AssociationSet>
+          <AssociationSet Name="Raso" Association="IT_PROJEKTASModel.Raso">
+            <End Role="Seller" EntitySet="Sellers" />
+            <End Role="Newsletter_entry" EntitySet="Newsletter_entry" />
+          </AssociationSet>
+          <AssociationSet Name="adopts" Association="IT_PROJEKTASModel.adopts">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Owner_person_adapter" EntitySet="Owner_person_adapter" />
+          </AssociationSet>
+          <AssociationSet Name="FK__regUser__id_Pers__46B27FE2" Association="IT_PROJEKTASModel.FK__regUser__id_Pers__46B27FE2">
+            <End Role="Person" EntitySet="People" />
+            <End Role="regUser" EntitySet="regUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Seller__id_Perso__3E1D39E1" Association="IT_PROJEKTASModel.FK__Seller__id_Perso__3E1D39E1">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Seller" EntitySet="Sellers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Subscribe__fk_Pe__55009F39" Association="IT_PROJEKTASModel.FK__Subscribe__fk_Pe__55009F39">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Subscribed_newsletter" EntitySet="Subscribed_newsletter" />
+          </AssociationSet>
+          <AssociationSet Name="Valdo" Association="IT_PROJEKTASModel.Valdo">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Shop" EntitySet="Shops" />
+          </AssociationSet>
+          <AssociationSet Name="Priklauso2" Association="IT_PROJEKTASModel.Priklauso2">
+            <End Role="Shop" EntitySet="Shops" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="Priklauso3" Association="IT_PROJEKTASModel.Priklauso3">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Product_in_shop" EntitySet="Product_in_shop" />
+          </AssociationSet>
+          <AssociationSet Name="Turi" Association="IT_PROJEKTASModel.Turi">
+            <End Role="Shop" EntitySet="Shops" />
+            <End Role="Product_in_shop" EntitySet="Product_in_shop" />
+          </AssociationSet>
+          <AssociationSet Name="Prenumeruoja" Association="IT_PROJEKTASModel.Prenumeruoja">
+            <End Role="regUser" EntitySet="regUsers" />
+            <End Role="Subscribed_newsletter" EntitySet="Subscribed_newsletter" />
+          </AssociationSet>
+          <AssociationSet Name="Priklauso1" Association="IT_PROJEKTASModel.Priklauso1">
+            <End Role="Search_parameters" EntitySet="Search_parameters" />
+            <End Role="Unclassified_pictures" EntitySet="Unclassified_pictures" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="id_Person" />
@@ -456,19 +534,19 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           <Property Name="Admin_vardas" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Teises" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="id_Person" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Person" Relationship="Self.FK__Admin__id_Person__339FAB6E" FromRole="Admin" ToRole="Person" />
+          <NavigationProperty Name="Person" Relationship="IT_PROJEKTASModel.FK__Admin__id_Person__339FAB6E" FromRole="Admin" ToRole="Person" />
         </EntityType>
         <EntityType Name="Newsletter">
           <Key>
-            <PropertyRef Name="id_Newsletter" />
+            <PropertyRef Name="pk_id" />
           </Key>
-          <Property Name="Turinys" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="id_Newsletter" Type="Int32" Nullable="false" />
-          <Property Name="fk_Personid_Person" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Newsletter_entry" Relationship="Self.FK__Newslette__fk_Ne__4C6B5938" FromRole="Newsletter" ToRole="Newsletter_entry" />
-          <NavigationProperty Name="Newsletter_entry1" Relationship="Self.generuoja" FromRole="Newsletter" ToRole="Newsletter_entry" />
-          <NavigationProperty Name="Subscribed_newsletter" Relationship="Self.prenumeruoja1" FromRole="Newsletter" ToRole="Subscribed_newsletter" />
-          <NavigationProperty Name="Person" Relationship="Self.rašo" FromRole="Newsletter" ToRole="Person" />
+          <Property Name="content" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="pk_id" Type="Int32" Nullable="false" />
+          <Property Name="fk_person_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Newsletter_entry" Relationship="IT_PROJEKTASModel.FK__Newslette__fk_Ne__4C6B5938" FromRole="Newsletter" ToRole="Newsletter_entry" />
+          <NavigationProperty Name="Newsletter_entry1" Relationship="IT_PROJEKTASModel.generuoja" FromRole="Newsletter" ToRole="Newsletter_entry" />
+          <NavigationProperty Name="Subscribed_newsletter" Relationship="IT_PROJEKTASModel.prenumeruoja1" FromRole="Newsletter" ToRole="Subscribed_newsletter" />
+          <NavigationProperty Name="Person" Relationship="IT_PROJEKTASModel.rašo" FromRole="Newsletter" ToRole="Person" />
         </EntityType>
         <EntityType Name="Newsletter_entry">
           <Key>
@@ -480,10 +558,10 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           <Property Name="fk_Userid_Person" Type="Int32" Nullable="false" />
           <Property Name="fk_Newsletterid_Newsletter" Type="Int32" Nullable="false" />
           <Property Name="fk_Newsletterid_Newsletter1" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Newsletter" Relationship="Self.FK__Newslette__fk_Ne__4C6B5938" FromRole="Newsletter_entry" ToRole="Newsletter" />
-          <NavigationProperty Name="Newsletter1" Relationship="Self.generuoja" FromRole="Newsletter_entry" ToRole="Newsletter" />
-          <NavigationProperty Name="regUser" Relationship="Self.FK__Newslette__fk_Us__4B7734FF" FromRole="Newsletter_entry" ToRole="regUser" />
-          <NavigationProperty Name="Seller" Relationship="Self.Raso" FromRole="Newsletter_entry" ToRole="Seller" />
+          <NavigationProperty Name="Newsletter" Relationship="IT_PROJEKTASModel.FK__Newslette__fk_Ne__4C6B5938" FromRole="Newsletter_entry" ToRole="Newsletter" />
+          <NavigationProperty Name="Newsletter1" Relationship="IT_PROJEKTASModel.generuoja" FromRole="Newsletter_entry" ToRole="Newsletter" />
+          <NavigationProperty Name="regUser" Relationship="IT_PROJEKTASModel.FK__Newslette__fk_Us__4B7734FF" FromRole="Newsletter_entry" ToRole="regUser" />
+          <NavigationProperty Name="Seller" Relationship="IT_PROJEKTASModel.Raso" FromRole="Newsletter_entry" ToRole="Seller" />
         </EntityType>
         <EntityType Name="NullObjectOwner">
           <Key>
@@ -497,7 +575,7 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           </Key>
           <Property Name="id_Owner_person_adapter" Type="Int32" Nullable="false" />
           <Property Name="fk_Personid_Person" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Person" Relationship="Self.adopts" FromRole="Owner_person_adapter" ToRole="Person" />
+          <NavigationProperty Name="Person" Relationship="IT_PROJEKTASModel.adopts" FromRole="Owner_person_adapter" ToRole="Person" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
@@ -512,13 +590,13 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           <Property Name="Registravimosi_data" Type="DateTime" Precision="0" />
           <Property Name="Busena" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="id_Person" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Admin" Relationship="Self.FK__Admin__id_Person__339FAB6E" FromRole="Person" ToRole="Admin" />
-          <NavigationProperty Name="Newsletters" Relationship="Self.rašo" FromRole="Person" ToRole="Newsletter" />
-          <NavigationProperty Name="Owner_person_adapter" Relationship="Self.adopts" FromRole="Person" ToRole="Owner_person_adapter" />
-          <NavigationProperty Name="regUser" Relationship="Self.FK__regUser__id_Pers__46B27FE2" FromRole="Person" ToRole="regUser" />
-          <NavigationProperty Name="Seller" Relationship="Self.FK__Seller__id_Perso__3E1D39E1" FromRole="Person" ToRole="Seller" />
-          <NavigationProperty Name="Subscribed_newsletter" Relationship="Self.FK__Subscribe__fk_Pe__55009F39" FromRole="Person" ToRole="Subscribed_newsletter" />
-          <NavigationProperty Name="Shops" Relationship="Self.Valdo" FromRole="Person" ToRole="Shop" />
+          <NavigationProperty Name="Admin" Relationship="IT_PROJEKTASModel.FK__Admin__id_Person__339FAB6E" FromRole="Person" ToRole="Admin" />
+          <NavigationProperty Name="Newsletters" Relationship="IT_PROJEKTASModel.rašo" FromRole="Person" ToRole="Newsletter" />
+          <NavigationProperty Name="Owner_person_adapter" Relationship="IT_PROJEKTASModel.adopts" FromRole="Person" ToRole="Owner_person_adapter" />
+          <NavigationProperty Name="regUser" Relationship="IT_PROJEKTASModel.FK__regUser__id_Pers__46B27FE2" FromRole="Person" ToRole="regUser" />
+          <NavigationProperty Name="Seller" Relationship="IT_PROJEKTASModel.FK__Seller__id_Perso__3E1D39E1" FromRole="Person" ToRole="Seller" />
+          <NavigationProperty Name="Subscribed_newsletter" Relationship="IT_PROJEKTASModel.FK__Subscribe__fk_Pe__55009F39" FromRole="Person" ToRole="Subscribed_newsletter" />
+          <NavigationProperty Name="Shops" Relationship="IT_PROJEKTASModel.Valdo" FromRole="Person" ToRole="Shop" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -532,8 +610,8 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           <Property Name="Nuotrauka" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="id_Product" Type="Int32" Nullable="false" />
           <Property Name="fk_Shopid_Shop" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Shop" Relationship="Self.Priklauso2" FromRole="Product" ToRole="Shop" />
-          <NavigationProperty Name="Product_in_shop" Relationship="Self.Priklauso3" FromRole="Product" ToRole="Product_in_shop" />
+          <NavigationProperty Name="Shop" Relationship="IT_PROJEKTASModel.Priklauso2" FromRole="Product" ToRole="Shop" />
+          <NavigationProperty Name="Product_in_shop" Relationship="IT_PROJEKTASModel.Priklauso3" FromRole="Product" ToRole="Product_in_shop" />
         </EntityType>
         <EntityType Name="Product_in_shop">
           <Key>
@@ -543,8 +621,8 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           <Property Name="id_Product_in_shop" Type="Int32" Nullable="false" />
           <Property Name="fk_Shopid_Shop" Type="Int32" Nullable="false" />
           <Property Name="fk_Productid_Product" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="Self.Priklauso3" FromRole="Product_in_shop" ToRole="Product" />
-          <NavigationProperty Name="Shop" Relationship="Self.Turi" FromRole="Product_in_shop" ToRole="Shop" />
+          <NavigationProperty Name="Product" Relationship="IT_PROJEKTASModel.Priklauso3" FromRole="Product_in_shop" ToRole="Product" />
+          <NavigationProperty Name="Shop" Relationship="IT_PROJEKTASModel.Turi" FromRole="Product_in_shop" ToRole="Shop" />
         </EntityType>
         <EntityType Name="regUser">
           <Key>
@@ -559,9 +637,9 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           <Property Name="Gimimo_menesis" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Gimimo_diena" Type="Int32" />
           <Property Name="id_Person" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Newsletter_entry" Relationship="Self.FK__Newslette__fk_Us__4B7734FF" FromRole="regUser" ToRole="Newsletter_entry" />
-          <NavigationProperty Name="Person" Relationship="Self.FK__regUser__id_Pers__46B27FE2" FromRole="regUser" ToRole="Person" />
-          <NavigationProperty Name="Subscribed_newsletter" Relationship="Self.Prenumeruoja" FromRole="regUser" ToRole="Subscribed_newsletter" />
+          <NavigationProperty Name="Newsletter_entry" Relationship="IT_PROJEKTASModel.FK__Newslette__fk_Us__4B7734FF" FromRole="regUser" ToRole="Newsletter_entry" />
+          <NavigationProperty Name="Person" Relationship="IT_PROJEKTASModel.FK__regUser__id_Pers__46B27FE2" FromRole="regUser" ToRole="Person" />
+          <NavigationProperty Name="Subscribed_newsletter" Relationship="IT_PROJEKTASModel.Prenumeruoja" FromRole="regUser" ToRole="Subscribed_newsletter" />
         </EntityType>
         <EntityType Name="Search_parameters">
           <Key>
@@ -571,8 +649,8 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           <Property Name="Svoriai" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Optimizavimo_metodas" Type="String" MaxLength="225" FixedLength="false" Unicode="false" />
           <Property Name="Yra_pagrindinis" Type="Boolean" />
-          <Property Name="id_Search_parameters" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Unclassified_pictures" Relationship="Self.Priklauso1" FromRole="Search_parameters" ToRole="Unclassified_pictures" />
+          <Property Name="id_Search_parameters" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Unclassified_pictures" Relationship="IT_PROJEKTASModel.Priklauso1" FromRole="Search_parameters" ToRole="Unclassified_pictures" />
         </EntityType>
         <EntityType Name="Seller">
           <Key>
@@ -580,8 +658,8 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           </Key>
           <Property Name="imones_kodas" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="id_Person" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Newsletter_entry" Relationship="Self.Raso" FromRole="Seller" ToRole="Newsletter_entry" />
-          <NavigationProperty Name="Person" Relationship="Self.FK__Seller__id_Perso__3E1D39E1" FromRole="Seller" ToRole="Person" />
+          <NavigationProperty Name="Newsletter_entry" Relationship="IT_PROJEKTASModel.Raso" FromRole="Seller" ToRole="Newsletter_entry" />
+          <NavigationProperty Name="Person" Relationship="IT_PROJEKTASModel.FK__Seller__id_Perso__3E1D39E1" FromRole="Seller" ToRole="Person" />
         </EntityType>
         <EntityType Name="Shop">
           <Key>
@@ -590,9 +668,9 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           <Property Name="Pavadinimas" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="id_Shop" Type="Int32" Nullable="false" />
           <Property Name="fk_Personid_Person" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Person" Relationship="Self.Valdo" FromRole="Shop" ToRole="Person" />
-          <NavigationProperty Name="Products" Relationship="Self.Priklauso2" FromRole="Shop" ToRole="Product" />
-          <NavigationProperty Name="Product_in_shop" Relationship="Self.Turi" FromRole="Shop" ToRole="Product_in_shop" />
+          <NavigationProperty Name="Person" Relationship="IT_PROJEKTASModel.Valdo" FromRole="Shop" ToRole="Person" />
+          <NavigationProperty Name="Products" Relationship="IT_PROJEKTASModel.Priklauso2" FromRole="Shop" ToRole="Product" />
+          <NavigationProperty Name="Product_in_shop" Relationship="IT_PROJEKTASModel.Turi" FromRole="Shop" ToRole="Product_in_shop" />
         </EntityType>
         <EntityType Name="Subscribed_newsletter">
           <Key>
@@ -604,15 +682,15 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           <Property Name="fk_Newsletterid_Newsletter" Type="Int32" Nullable="false" />
           <Property Name="fk_Personid_Person" Type="Int32" Nullable="false" />
           <Property Name="fk_Personid_Person1" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Newsletter" Relationship="Self.prenumeruoja1" FromRole="Subscribed_newsletter" ToRole="Newsletter" />
-          <NavigationProperty Name="Person" Relationship="Self.FK__Subscribe__fk_Pe__55009F39" FromRole="Subscribed_newsletter" ToRole="Person" />
-          <NavigationProperty Name="regUser" Relationship="Self.Prenumeruoja" FromRole="Subscribed_newsletter" ToRole="regUser" />
+          <NavigationProperty Name="Newsletter" Relationship="IT_PROJEKTASModel.prenumeruoja1" FromRole="Subscribed_newsletter" ToRole="Newsletter" />
+          <NavigationProperty Name="Person" Relationship="IT_PROJEKTASModel.FK__Subscribe__fk_Pe__55009F39" FromRole="Subscribed_newsletter" ToRole="Person" />
+          <NavigationProperty Name="regUser" Relationship="IT_PROJEKTASModel.Prenumeruoja" FromRole="Subscribed_newsletter" ToRole="regUser" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
@@ -625,11 +703,11 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           <Property Name="ikelimo_data" Type="DateTime" Precision="0" />
           <Property Name="id_Unclassified_pictures" Type="Int32" Nullable="false" />
           <Property Name="fk_Search_parametersid_Search_parameters" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Search_parameters" Relationship="Self.Priklauso1" FromRole="Unclassified_pictures" ToRole="Search_parameters" />
+          <NavigationProperty Name="Search_parameters" Relationship="IT_PROJEKTASModel.Priklauso1" FromRole="Unclassified_pictures" ToRole="Search_parameters" />
         </EntityType>
         <Association Name="FK__Admin__id_Person__339FAB6E">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
-          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Type="IT_PROJEKTASModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="IT_PROJEKTASModel.Admin" Role="Admin" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Person">
               <PropertyRef Name="id_Person" />
@@ -640,11 +718,11 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Newslette__fk_Ne__4C6B5938">
-          <End Role="Newsletter" Type="Self.Newsletter" Multiplicity="1" />
-          <End Role="Newsletter_entry" Type="Self.Newsletter_entry" Multiplicity="*" />
+          <End Type="IT_PROJEKTASModel.Newsletter" Role="Newsletter" Multiplicity="1" />
+          <End Type="IT_PROJEKTASModel.Newsletter_entry" Role="Newsletter_entry" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Newsletter">
-              <PropertyRef Name="id_Newsletter" />
+              <PropertyRef Name="pk_id" />
             </Principal>
             <Dependent Role="Newsletter_entry">
               <PropertyRef Name="fk_Newsletterid_Newsletter" />
@@ -652,11 +730,11 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           </ReferentialConstraint>
         </Association>
         <Association Name="generuoja">
-          <End Role="Newsletter" Type="Self.Newsletter" Multiplicity="1" />
-          <End Role="Newsletter_entry" Type="Self.Newsletter_entry" Multiplicity="*" />
+          <End Type="IT_PROJEKTASModel.Newsletter" Role="Newsletter" Multiplicity="1" />
+          <End Type="IT_PROJEKTASModel.Newsletter_entry" Role="Newsletter_entry" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Newsletter">
-              <PropertyRef Name="id_Newsletter" />
+              <PropertyRef Name="pk_id" />
             </Principal>
             <Dependent Role="Newsletter_entry">
               <PropertyRef Name="fk_Newsletterid_Newsletter1" />
@@ -664,11 +742,11 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           </ReferentialConstraint>
         </Association>
         <Association Name="prenumeruoja1">
-          <End Role="Newsletter" Type="Self.Newsletter" Multiplicity="1" />
-          <End Role="Subscribed_newsletter" Type="Self.Subscribed_newsletter" Multiplicity="*" />
+          <End Type="IT_PROJEKTASModel.Newsletter" Role="Newsletter" Multiplicity="1" />
+          <End Type="IT_PROJEKTASModel.Subscribed_newsletter" Role="Subscribed_newsletter" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Newsletter">
-              <PropertyRef Name="id_Newsletter" />
+              <PropertyRef Name="pk_id" />
             </Principal>
             <Dependent Role="Subscribed_newsletter">
               <PropertyRef Name="fk_Newsletterid_Newsletter" />
@@ -676,20 +754,20 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           </ReferentialConstraint>
         </Association>
         <Association Name="rašo">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
-          <End Role="Newsletter" Type="Self.Newsletter" Multiplicity="*" />
+          <End Type="IT_PROJEKTASModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="IT_PROJEKTASModel.Newsletter" Role="Newsletter" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Person">
               <PropertyRef Name="id_Person" />
             </Principal>
             <Dependent Role="Newsletter">
-              <PropertyRef Name="fk_Personid_Person" />
+              <PropertyRef Name="fk_person_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Newslette__fk_Us__4B7734FF">
-          <End Role="regUser" Type="Self.regUser" Multiplicity="1" />
-          <End Role="Newsletter_entry" Type="Self.Newsletter_entry" Multiplicity="*" />
+          <End Type="IT_PROJEKTASModel.regUser" Role="regUser" Multiplicity="1" />
+          <End Type="IT_PROJEKTASModel.Newsletter_entry" Role="Newsletter_entry" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="regUser">
               <PropertyRef Name="id_Person" />
@@ -700,8 +778,8 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           </ReferentialConstraint>
         </Association>
         <Association Name="Raso">
-          <End Role="Seller" Type="Self.Seller" Multiplicity="1" />
-          <End Role="Newsletter_entry" Type="Self.Newsletter_entry" Multiplicity="*" />
+          <End Type="IT_PROJEKTASModel.Seller" Role="Seller" Multiplicity="1" />
+          <End Type="IT_PROJEKTASModel.Newsletter_entry" Role="Newsletter_entry" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Seller">
               <PropertyRef Name="id_Person" />
@@ -712,8 +790,8 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           </ReferentialConstraint>
         </Association>
         <Association Name="adopts">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
-          <End Role="Owner_person_adapter" Type="Self.Owner_person_adapter" Multiplicity="*" />
+          <End Type="IT_PROJEKTASModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="IT_PROJEKTASModel.Owner_person_adapter" Role="Owner_person_adapter" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Person">
               <PropertyRef Name="id_Person" />
@@ -724,8 +802,8 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__regUser__id_Pers__46B27FE2">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
-          <End Role="regUser" Type="Self.regUser" Multiplicity="0..1" />
+          <End Type="IT_PROJEKTASModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="IT_PROJEKTASModel.regUser" Role="regUser" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Person">
               <PropertyRef Name="id_Person" />
@@ -736,8 +814,8 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Seller__id_Perso__3E1D39E1">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
-          <End Role="Seller" Type="Self.Seller" Multiplicity="0..1" />
+          <End Type="IT_PROJEKTASModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="IT_PROJEKTASModel.Seller" Role="Seller" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Person">
               <PropertyRef Name="id_Person" />
@@ -748,8 +826,8 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Subscribe__fk_Pe__55009F39">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
-          <End Role="Subscribed_newsletter" Type="Self.Subscribed_newsletter" Multiplicity="*" />
+          <End Type="IT_PROJEKTASModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="IT_PROJEKTASModel.Subscribed_newsletter" Role="Subscribed_newsletter" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Person">
               <PropertyRef Name="id_Person" />
@@ -760,8 +838,8 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           </ReferentialConstraint>
         </Association>
         <Association Name="Valdo">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
-          <End Role="Shop" Type="Self.Shop" Multiplicity="*" />
+          <End Type="IT_PROJEKTASModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="IT_PROJEKTASModel.Shop" Role="Shop" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Person">
               <PropertyRef Name="id_Person" />
@@ -772,8 +850,8 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           </ReferentialConstraint>
         </Association>
         <Association Name="Priklauso2">
-          <End Role="Shop" Type="Self.Shop" Multiplicity="1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <End Type="IT_PROJEKTASModel.Shop" Role="Shop" Multiplicity="1" />
+          <End Type="IT_PROJEKTASModel.Product" Role="Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Shop">
               <PropertyRef Name="id_Shop" />
@@ -784,8 +862,8 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           </ReferentialConstraint>
         </Association>
         <Association Name="Priklauso3">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="Product_in_shop" Type="Self.Product_in_shop" Multiplicity="*" />
+          <End Type="IT_PROJEKTASModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="IT_PROJEKTASModel.Product_in_shop" Role="Product_in_shop" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="id_Product" />
@@ -796,8 +874,8 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           </ReferentialConstraint>
         </Association>
         <Association Name="Turi">
-          <End Role="Shop" Type="Self.Shop" Multiplicity="1" />
-          <End Role="Product_in_shop" Type="Self.Product_in_shop" Multiplicity="*" />
+          <End Type="IT_PROJEKTASModel.Shop" Role="Shop" Multiplicity="1" />
+          <End Type="IT_PROJEKTASModel.Product_in_shop" Role="Product_in_shop" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Shop">
               <PropertyRef Name="id_Shop" />
@@ -808,8 +886,8 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           </ReferentialConstraint>
         </Association>
         <Association Name="Prenumeruoja">
-          <End Role="regUser" Type="Self.regUser" Multiplicity="1" />
-          <End Role="Subscribed_newsletter" Type="Self.Subscribed_newsletter" Multiplicity="*" />
+          <End Type="IT_PROJEKTASModel.regUser" Role="regUser" Multiplicity="1" />
+          <End Type="IT_PROJEKTASModel.Subscribed_newsletter" Role="Subscribed_newsletter" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="regUser">
               <PropertyRef Name="id_Person" />
@@ -820,8 +898,8 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           </ReferentialConstraint>
         </Association>
         <Association Name="Priklauso1">
-          <End Role="Search_parameters" Type="Self.Search_parameters" Multiplicity="1" />
-          <End Role="Unclassified_pictures" Type="Self.Unclassified_pictures" Multiplicity="*" />
+          <End Type="IT_PROJEKTASModel.Search_parameters" Role="Search_parameters" Multiplicity="1" />
+          <End Type="IT_PROJEKTASModel.Unclassified_pictures" Role="Unclassified_pictures" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Search_parameters">
               <PropertyRef Name="id_Search_parameters" />
@@ -831,92 +909,7 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="IT_PROJEKTASEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Admins" EntityType="Self.Admin" />
-          <EntitySet Name="Newsletters" EntityType="Self.Newsletter" />
-          <EntitySet Name="Newsletter_entry" EntityType="Self.Newsletter_entry" />
-          <EntitySet Name="NullObjectOwners" EntityType="Self.NullObjectOwner" />
-          <EntitySet Name="Owner_person_adapter" EntityType="Self.Owner_person_adapter" />
-          <EntitySet Name="People" EntityType="Self.Person" />
-          <EntitySet Name="Products" EntityType="Self.Product" />
-          <EntitySet Name="Product_in_shop" EntityType="Self.Product_in_shop" />
-          <EntitySet Name="regUsers" EntityType="Self.regUser" />
-          <EntitySet Name="Search_parameters" EntityType="Self.Search_parameters" />
-          <EntitySet Name="Sellers" EntityType="Self.Seller" />
-          <EntitySet Name="Shops" EntityType="Self.Shop" />
-          <EntitySet Name="Subscribed_newsletter" EntityType="Self.Subscribed_newsletter" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="Unclassified_pictures" EntityType="Self.Unclassified_pictures" />
-          <AssociationSet Name="FK__Admin__id_Person__339FAB6E" Association="Self.FK__Admin__id_Person__339FAB6E">
-            <End Role="Person" EntitySet="People" />
-            <End Role="Admin" EntitySet="Admins" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Newslette__fk_Ne__4C6B5938" Association="Self.FK__Newslette__fk_Ne__4C6B5938">
-            <End Role="Newsletter" EntitySet="Newsletters" />
-            <End Role="Newsletter_entry" EntitySet="Newsletter_entry" />
-          </AssociationSet>
-          <AssociationSet Name="generuoja" Association="Self.generuoja">
-            <End Role="Newsletter" EntitySet="Newsletters" />
-            <End Role="Newsletter_entry" EntitySet="Newsletter_entry" />
-          </AssociationSet>
-          <AssociationSet Name="prenumeruoja1" Association="Self.prenumeruoja1">
-            <End Role="Newsletter" EntitySet="Newsletters" />
-            <End Role="Subscribed_newsletter" EntitySet="Subscribed_newsletter" />
-          </AssociationSet>
-          <AssociationSet Name="rašo" Association="Self.rašo">
-            <End Role="Person" EntitySet="People" />
-            <End Role="Newsletter" EntitySet="Newsletters" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Newslette__fk_Us__4B7734FF" Association="Self.FK__Newslette__fk_Us__4B7734FF">
-            <End Role="regUser" EntitySet="regUsers" />
-            <End Role="Newsletter_entry" EntitySet="Newsletter_entry" />
-          </AssociationSet>
-          <AssociationSet Name="Raso" Association="Self.Raso">
-            <End Role="Seller" EntitySet="Sellers" />
-            <End Role="Newsletter_entry" EntitySet="Newsletter_entry" />
-          </AssociationSet>
-          <AssociationSet Name="adopts" Association="Self.adopts">
-            <End Role="Person" EntitySet="People" />
-            <End Role="Owner_person_adapter" EntitySet="Owner_person_adapter" />
-          </AssociationSet>
-          <AssociationSet Name="FK__regUser__id_Pers__46B27FE2" Association="Self.FK__regUser__id_Pers__46B27FE2">
-            <End Role="Person" EntitySet="People" />
-            <End Role="regUser" EntitySet="regUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Seller__id_Perso__3E1D39E1" Association="Self.FK__Seller__id_Perso__3E1D39E1">
-            <End Role="Person" EntitySet="People" />
-            <End Role="Seller" EntitySet="Sellers" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Subscribe__fk_Pe__55009F39" Association="Self.FK__Subscribe__fk_Pe__55009F39">
-            <End Role="Person" EntitySet="People" />
-            <End Role="Subscribed_newsletter" EntitySet="Subscribed_newsletter" />
-          </AssociationSet>
-          <AssociationSet Name="Valdo" Association="Self.Valdo">
-            <End Role="Person" EntitySet="People" />
-            <End Role="Shop" EntitySet="Shops" />
-          </AssociationSet>
-          <AssociationSet Name="Priklauso2" Association="Self.Priklauso2">
-            <End Role="Shop" EntitySet="Shops" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="Priklauso3" Association="Self.Priklauso3">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="Product_in_shop" EntitySet="Product_in_shop" />
-          </AssociationSet>
-          <AssociationSet Name="Turi" Association="Self.Turi">
-            <End Role="Shop" EntitySet="Shops" />
-            <End Role="Product_in_shop" EntitySet="Product_in_shop" />
-          </AssociationSet>
-          <AssociationSet Name="Prenumeruoja" Association="Self.Prenumeruoja">
-            <End Role="regUser" EntitySet="regUsers" />
-            <End Role="Subscribed_newsletter" EntitySet="Subscribed_newsletter" />
-          </AssociationSet>
-          <AssociationSet Name="Priklauso1" Association="Self.Priklauso1">
-            <End Role="Search_parameters" EntitySet="Search_parameters" />
-            <End Role="Unclassified_pictures" EntitySet="Unclassified_pictures" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -925,30 +918,30 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           <EntitySetMapping Name="Admins">
             <EntityTypeMapping TypeName="IT_PROJEKTASModel.Admin">
               <MappingFragment StoreEntitySet="Admin">
-                <ScalarProperty Name="Admin_vardas" ColumnName="Admin_vardas" />
-                <ScalarProperty Name="Teises" ColumnName="Teises" />
                 <ScalarProperty Name="id_Person" ColumnName="id_Person" />
+                <ScalarProperty Name="Teises" ColumnName="Teises" />
+                <ScalarProperty Name="Admin_vardas" ColumnName="Admin_vardas" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Newsletters">
             <EntityTypeMapping TypeName="IT_PROJEKTASModel.Newsletter">
               <MappingFragment StoreEntitySet="Newsletter">
-                <ScalarProperty Name="Turinys" ColumnName="Turinys" />
-                <ScalarProperty Name="id_Newsletter" ColumnName="id_Newsletter" />
-                <ScalarProperty Name="fk_Personid_Person" ColumnName="fk_Personid_Person" />
+                <ScalarProperty Name="fk_person_id" ColumnName="fk_person_id" />
+                <ScalarProperty Name="pk_id" ColumnName="pk_id" />
+                <ScalarProperty Name="content" ColumnName="content" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Newsletter_entry">
             <EntityTypeMapping TypeName="IT_PROJEKTASModel.Newsletter_entry">
               <MappingFragment StoreEntitySet="Newsletter_entry">
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="id_Newsletter_entry" ColumnName="id_Newsletter_entry" />
-                <ScalarProperty Name="fk_Sellerid_Person" ColumnName="fk_Sellerid_Person" />
-                <ScalarProperty Name="fk_Userid_Person" ColumnName="fk_Userid_Person" />
-                <ScalarProperty Name="fk_Newsletterid_Newsletter" ColumnName="fk_Newsletterid_Newsletter" />
                 <ScalarProperty Name="fk_Newsletterid_Newsletter1" ColumnName="fk_Newsletterid_Newsletter1" />
+                <ScalarProperty Name="fk_Newsletterid_Newsletter" ColumnName="fk_Newsletterid_Newsletter" />
+                <ScalarProperty Name="fk_Userid_Person" ColumnName="fk_Userid_Person" />
+                <ScalarProperty Name="fk_Sellerid_Person" ColumnName="fk_Sellerid_Person" />
+                <ScalarProperty Name="id_Newsletter_entry" ColumnName="id_Newsletter_entry" />
+                <ScalarProperty Name="state" ColumnName="state" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -962,122 +955,122 @@ warning 6013: The table/view 'IT_PROJEKTAS.dbo.testas' does not have a primary k
           <EntitySetMapping Name="Owner_person_adapter">
             <EntityTypeMapping TypeName="IT_PROJEKTASModel.Owner_person_adapter">
               <MappingFragment StoreEntitySet="Owner_person_adapter">
-                <ScalarProperty Name="id_Owner_person_adapter" ColumnName="id_Owner_person_adapter" />
                 <ScalarProperty Name="fk_Personid_Person" ColumnName="fk_Personid_Person" />
+                <ScalarProperty Name="id_Owner_person_adapter" ColumnName="id_Owner_person_adapter" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="People">
             <EntityTypeMapping TypeName="IT_PROJEKTASModel.Person">
               <MappingFragment StoreEntitySet="Person">
-                <ScalarProperty Name="Vardas" ColumnName="Vardas" />
-                <ScalarProperty Name="Pavarde" ColumnName="Pavarde" />
-                <ScalarProperty Name="El_Paštas" ColumnName="El_Paštas" />
-                <ScalarProperty Name="Slaptažodis" ColumnName="Slaptažodis" />
-                <ScalarProperty Name="Discord_Id" ColumnName="Discord_Id" />
-                <ScalarProperty Name="Paskutinis_prisijungimas" ColumnName="Paskutinis_prisijungimas" />
-                <ScalarProperty Name="Registravimosi_data" ColumnName="Registravimosi_data" />
-                <ScalarProperty Name="Busena" ColumnName="Busena" />
                 <ScalarProperty Name="id_Person" ColumnName="id_Person" />
+                <ScalarProperty Name="Busena" ColumnName="Busena" />
+                <ScalarProperty Name="Registravimosi_data" ColumnName="Registravimosi_data" />
+                <ScalarProperty Name="Paskutinis_prisijungimas" ColumnName="Paskutinis_prisijungimas" />
+                <ScalarProperty Name="Discord_Id" ColumnName="Discord_Id" />
+                <ScalarProperty Name="Slaptažodis" ColumnName="Slaptažodis" />
+                <ScalarProperty Name="El_Paštas" ColumnName="El_Paštas" />
+                <ScalarProperty Name="Pavarde" ColumnName="Pavarde" />
+                <ScalarProperty Name="Vardas" ColumnName="Vardas" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="IT_PROJEKTASModel.Product">
               <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="Pavadinimas" ColumnName="Pavadinimas" />
-                <ScalarProperty Name="Kaina" ColumnName="Kaina" />
-                <ScalarProperty Name="Aprašymas" ColumnName="Aprašymas" />
-                <ScalarProperty Name="Busena" ColumnName="Busena" />
-                <ScalarProperty Name="BarKodas" ColumnName="BarKodas" />
-                <ScalarProperty Name="Nuotrauka" ColumnName="Nuotrauka" />
-                <ScalarProperty Name="id_Product" ColumnName="id_Product" />
                 <ScalarProperty Name="fk_Shopid_Shop" ColumnName="fk_Shopid_Shop" />
+                <ScalarProperty Name="id_Product" ColumnName="id_Product" />
+                <ScalarProperty Name="Nuotrauka" ColumnName="Nuotrauka" />
+                <ScalarProperty Name="BarKodas" ColumnName="BarKodas" />
+                <ScalarProperty Name="Busena" ColumnName="Busena" />
+                <ScalarProperty Name="Aprašymas" ColumnName="Aprašymas" />
+                <ScalarProperty Name="Kaina" ColumnName="Kaina" />
+                <ScalarProperty Name="Pavadinimas" ColumnName="Pavadinimas" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Product_in_shop">
             <EntityTypeMapping TypeName="IT_PROJEKTASModel.Product_in_shop">
               <MappingFragment StoreEntitySet="Product_in_shop">
-                <ScalarProperty Name="Kaina" ColumnName="Kaina" />
-                <ScalarProperty Name="id_Product_in_shop" ColumnName="id_Product_in_shop" />
-                <ScalarProperty Name="fk_Shopid_Shop" ColumnName="fk_Shopid_Shop" />
                 <ScalarProperty Name="fk_Productid_Product" ColumnName="fk_Productid_Product" />
+                <ScalarProperty Name="fk_Shopid_Shop" ColumnName="fk_Shopid_Shop" />
+                <ScalarProperty Name="id_Product_in_shop" ColumnName="id_Product_in_shop" />
+                <ScalarProperty Name="Kaina" ColumnName="Kaina" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="regUsers">
             <EntityTypeMapping TypeName="IT_PROJEKTASModel.regUser">
               <MappingFragment StoreEntitySet="regUser">
-                <ScalarProperty Name="Salis" ColumnName="Salis" />
-                <ScalarProperty Name="Miestas" ColumnName="Miestas" />
-                <ScalarProperty Name="Rajonas" ColumnName="Rajonas" />
-                <ScalarProperty Name="Gatve" ColumnName="Gatve" />
-                <ScalarProperty Name="Buto_numeris" ColumnName="Buto_numeris" />
-                <ScalarProperty Name="Gimimo_metai" ColumnName="Gimimo_metai" />
-                <ScalarProperty Name="Gimimo_menesis" ColumnName="Gimimo_menesis" />
-                <ScalarProperty Name="Gimimo_diena" ColumnName="Gimimo_diena" />
                 <ScalarProperty Name="id_Person" ColumnName="id_Person" />
+                <ScalarProperty Name="Gimimo_diena" ColumnName="Gimimo_diena" />
+                <ScalarProperty Name="Gimimo_menesis" ColumnName="Gimimo_menesis" />
+                <ScalarProperty Name="Gimimo_metai" ColumnName="Gimimo_metai" />
+                <ScalarProperty Name="Buto_numeris" ColumnName="Buto_numeris" />
+                <ScalarProperty Name="Gatve" ColumnName="Gatve" />
+                <ScalarProperty Name="Rajonas" ColumnName="Rajonas" />
+                <ScalarProperty Name="Miestas" ColumnName="Miestas" />
+                <ScalarProperty Name="Salis" ColumnName="Salis" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Search_parameters">
             <EntityTypeMapping TypeName="IT_PROJEKTASModel.Search_parameters">
               <MappingFragment StoreEntitySet="Search_parameters">
-                <ScalarProperty Name="Apsimokymo_greitis" ColumnName="Apsimokymo_greitis" />
-                <ScalarProperty Name="Svoriai" ColumnName="Svoriai" />
-                <ScalarProperty Name="Optimizavimo_metodas" ColumnName="Optimizavimo_metodas" />
-                <ScalarProperty Name="Yra_pagrindinis" ColumnName="Yra_pagrindinis" />
                 <ScalarProperty Name="id_Search_parameters" ColumnName="id_Search_parameters" />
+                <ScalarProperty Name="Yra_pagrindinis" ColumnName="Yra_pagrindinis" />
+                <ScalarProperty Name="Optimizavimo_metodas" ColumnName="Optimizavimo_metodas" />
+                <ScalarProperty Name="Svoriai" ColumnName="Svoriai" />
+                <ScalarProperty Name="Apsimokymo_greitis" ColumnName="Apsimokymo_greitis" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sellers">
             <EntityTypeMapping TypeName="IT_PROJEKTASModel.Seller">
               <MappingFragment StoreEntitySet="Seller">
-                <ScalarProperty Name="imones_kodas" ColumnName="imones_kodas" />
                 <ScalarProperty Name="id_Person" ColumnName="id_Person" />
+                <ScalarProperty Name="imones_kodas" ColumnName="imones_kodas" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Shops">
             <EntityTypeMapping TypeName="IT_PROJEKTASModel.Shop">
               <MappingFragment StoreEntitySet="Shop">
-                <ScalarProperty Name="Pavadinimas" ColumnName="Pavadinimas" />
-                <ScalarProperty Name="id_Shop" ColumnName="id_Shop" />
                 <ScalarProperty Name="fk_Personid_Person" ColumnName="fk_Personid_Person" />
+                <ScalarProperty Name="id_Shop" ColumnName="id_Shop" />
+                <ScalarProperty Name="Pavadinimas" ColumnName="Pavadinimas" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Subscribed_newsletter">
             <EntityTypeMapping TypeName="IT_PROJEKTASModel.Subscribed_newsletter">
               <MappingFragment StoreEntitySet="Subscribed_newsletter">
-                <ScalarProperty Name="Pateikimo_forma" ColumnName="Pateikimo_forma" />
-                <ScalarProperty Name="id_Subscribed_newsletter" ColumnName="id_Subscribed_newsletter" />
-                <ScalarProperty Name="fk_Userid_Person" ColumnName="fk_Userid_Person" />
-                <ScalarProperty Name="fk_Newsletterid_Newsletter" ColumnName="fk_Newsletterid_Newsletter" />
-                <ScalarProperty Name="fk_Personid_Person" ColumnName="fk_Personid_Person" />
                 <ScalarProperty Name="fk_Personid_Person1" ColumnName="fk_Personid_Person1" />
+                <ScalarProperty Name="fk_Personid_Person" ColumnName="fk_Personid_Person" />
+                <ScalarProperty Name="fk_Newsletterid_Newsletter" ColumnName="fk_Newsletterid_Newsletter" />
+                <ScalarProperty Name="fk_Userid_Person" ColumnName="fk_Userid_Person" />
+                <ScalarProperty Name="id_Subscribed_newsletter" ColumnName="id_Subscribed_newsletter" />
+                <ScalarProperty Name="Pateikimo_forma" ColumnName="Pateikimo_forma" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="IT_PROJEKTASModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Unclassified_pictures">
             <EntityTypeMapping TypeName="IT_PROJEKTASModel.Unclassified_pictures">
               <MappingFragment StoreEntitySet="Unclassified_pictures">
-                <ScalarProperty Name="ikelimo_data" ColumnName="ikelimo_data" />
-                <ScalarProperty Name="id_Unclassified_pictures" ColumnName="id_Unclassified_pictures" />
                 <ScalarProperty Name="fk_Search_parametersid_Search_parameters" ColumnName="fk_Search_parametersid_Search_parameters" />
+                <ScalarProperty Name="id_Unclassified_pictures" ColumnName="id_Unclassified_pictures" />
+                <ScalarProperty Name="ikelimo_data" ColumnName="ikelimo_data" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
