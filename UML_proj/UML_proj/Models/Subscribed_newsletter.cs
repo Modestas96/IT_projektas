@@ -11,18 +11,62 @@ namespace UML_proj.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Linq;
+
     public partial class Subscribed_newsletter
     {
-        public string Pateikimo_forma { get; set; }
-        public int id_Subscribed_newsletter { get; set; }
-        public int fk_Userid_Person { get; set; }
-        public int fk_Newsletterid_Newsletter { get; set; }
-        public int fk_Personid_Person { get; set; }
-        public int fk_Personid_Person1 { get; set; }
-    
+        IT_PROJEKTASEntities db = new IT_PROJEKTASEntities();
+        public string receit_form { get; set; }
+        public int id { get; set; }
+        public int fk_subscriber_id { get; set; }
+        public int fk_newsletter_id { get; set; }
+
+        public IEnumerable<Subscribed_newsletter> select(int id, bool newsletter)
+        {
+            // newsletter == true : all subs of this newsletter. false = a single person's sub list
+            
+            if (newsletter)
+            {
+                var dataset = db.Subscribed_newsletter
+                    .Where(x => x.fk_newsletter_id == id)
+                    .Select(x => new 
+                    {
+                        receit_form = x.receit_form,
+                        id = x.id,
+                        fk_subscriber_id = x.fk_subscriber_id,
+                        fk_newsletter_id = x.fk_newsletter_id
+                    }).ToList().Select(x => new Subscribed_newsletter
+                    {
+                        receit_form = x.receit_form,
+                        id = x.id,
+                        fk_subscriber_id = x.fk_subscriber_id,
+                        fk_newsletter_id = x.fk_newsletter_id
+                    });
+
+                return dataset;
+            }
+            else
+            {
+                var dataset = db.Subscribed_newsletter
+                    .Where(x => x.fk_subscriber_id == id)
+                    .Select(x => new 
+                    {
+                        receit_form = x.receit_form,
+                        id = x.id,
+                        fk_subscriber_id = x.fk_subscriber_id,
+                        fk_newsletter_id = x.fk_newsletter_id
+                    }).ToList().Select(x => new Subscribed_newsletter
+                    {
+                        receit_form = x.receit_form,
+                        id = x.id,
+                        fk_subscriber_id = x.fk_subscriber_id,
+                        fk_newsletter_id = x.fk_newsletter_id
+                    });
+                return dataset;
+            }
+        }
+
         public virtual Newsletter Newsletter { get; set; }
         public virtual Person Person { get; set; }
-        public virtual regUser regUser { get; set; }
     }
 }

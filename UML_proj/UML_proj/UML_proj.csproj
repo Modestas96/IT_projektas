@@ -159,6 +159,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LearningParametersController.cs" />
     <Compile Include="Controllers\NewsletterController.cs" />
+    <Compile Include="Controllers\Subscribed_newsletterController.cs" />
     <Compile Include="Controllers\SubscriptionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -287,6 +288,11 @@
     <Content Include="Views\Subscription\SubscriptionList.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\UserDashBoard.cshtml" />
+    <Content Include="Views\Subscribed_newsletter\Create.cshtml" />
+    <Content Include="Views\Subscribed_newsletter\Delete.cshtml" />
+    <Content Include="Views\Subscribed_newsletter\Details.cshtml" />
+    <Content Include="Views\Subscribed_newsletter\Edit.cshtml" />
+    <Content Include="Views\Subscribed_newsletter\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
