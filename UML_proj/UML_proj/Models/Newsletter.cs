@@ -22,9 +22,9 @@ namespace UML_proj.Models
             this.Subscribed_newsletter = new HashSet<Subscribed_newsletter>();
         }
     
-        public string Turinys { get; set; }
-        public int id_Newsletter { get; set; }
-        public int fk_Personid_Person { get; set; }
+        public string content { get; set; }
+        public int pk_id { get; set; }
+        public int fk_person_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Newsletter_entry> Newsletter_entry { get; set; }

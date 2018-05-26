@@ -11,13 +11,14 @@ namespace UML_proj.Controllers
         // GET: NewsletterForm
         public ActionResult open_form() // open_form
         {
+            ViewBag.Message = "";
             return View("NewsletterForm");
         }
 
-        [HttpPost]
-        public ActionResult send_new_entry() // send_new_entry
+        public ActionResult send_new_entry(Models.Newsletter newsletter) // send_new_entry
         {
-
+            ViewData["value"] = newsletter.content + "\nmessage sent!";
+            ViewBag.Message = newsletter.content + "\nmessage sent!";
             return View("NewsletterForm");
             /*
             newsletter_entries = newsletter_entry.select();

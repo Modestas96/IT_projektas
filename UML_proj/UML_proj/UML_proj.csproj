@@ -285,6 +285,8 @@
     <Content Include="Views\Subscription\ProfilePage.cshtml" />
     <Content Include="Views\Newsletter\NewsletterForm.cshtml" />
     <Content Include="Views\Subscription\SubscriptionList.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\UserDashBoard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
