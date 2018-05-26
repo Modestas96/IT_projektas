@@ -17,7 +17,7 @@ namespace UML_proj.Controllers
         [HttpPost]
         public ActionResult Update(Search_parameters updatedParameters)
         {
-            IT_PROJEKTASEntities db = new IT_PROJEKTASEntities();
+            Model1 db = new Model1();
             if (updatedParameters != null)
             {
                 db.Search_parameters.Add(updatedParameters);
@@ -28,7 +28,7 @@ namespace UML_proj.Controllers
 
         public ActionResult LearningParametersForm()
         {
-            IT_PROJEKTASEntities db = new IT_PROJEKTASEntities();
+            Model1 db = new Model1();
             
             Search_parameters param = db.Search_parameters.SingleOrDefault(x => x.id_Search_parameters == 2);
 

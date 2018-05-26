@@ -6,16 +6,14 @@ namespace UML_proj.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Seller")]
-    public partial class Seller
+    public partial class User_type
     {
-        [StringLength(255)]
-        public string imones_kodas { get; set; }
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int id_Person { get; set; }
+        public int id_User_type { get; set; }
 
-        public virtual Person Person { get; set; }
+        [Required]
+        [StringLength(22)]
+        public string name { get; set; }
     }
 }

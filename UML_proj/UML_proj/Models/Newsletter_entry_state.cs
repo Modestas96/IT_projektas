@@ -6,29 +6,23 @@ namespace UML_proj.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Search_parameters
+    public partial class Newsletter_entry_state
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Search_parameters()
+        public Newsletter_entry_state()
         {
-            Unclassified_pictures = new HashSet<Unclassified_pictures>();
+            Newsletter_entry = new HashSet<Newsletter_entry>();
         }
-
-        public double? Apsimokymo_greitis { get; set; }
-
-        [StringLength(220)]
-        public string Svoriai { get; set; }
-
-        [StringLength(220)]
-        public string Optimizavimo_metodas { get; set; }
-
-        public bool? Yra_pagrindinis { get; set; }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int id_Search_parameters { get; set; }
+        public int id_Newsletter_entry_state { get; set; }
+
+        [Required]
+        [StringLength(22)]
+        public string name { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Unclassified_pictures> Unclassified_pictures { get; set; }
+        public virtual ICollection<Newsletter_entry> Newsletter_entry { get; set; }
     }
 }

@@ -23,14 +23,14 @@ namespace UML_proj.Controllers
         {
             if (ModelState.IsValid)
             {
-                IT_PROJEKTASEntities db = new IT_PROJEKTASEntities();
+                Model1 db = new Model1();
                 //Search_parameters param = db.Search_parameters.SingleOrDefault(x => x.id_Search_parameters == 2);
                 
-                var obj = db.People.Where(a => a.Vardas.Equals(objUser.Vardas) && a.Slaptažodis.Equals(objUser.Slaptažodis)).FirstOrDefault();
+                var obj = db.People.Where(a => a.name.Equals(objUser.name) && a.password.Equals(objUser.password)).FirstOrDefault();
                 if (obj != null)
                 {
                     Session["UserID"] = obj.id_Person.ToString();
-                    Session["UserName"] = obj.Vardas.ToString();
+                    Session["UserName"] = obj.name.ToString();
                     return RedirectToAction("UserDashBoard");
                 }
             }

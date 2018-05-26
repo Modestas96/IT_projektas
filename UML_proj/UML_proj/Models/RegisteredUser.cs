@@ -6,41 +6,44 @@ namespace UML_proj.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Product")]
-    public partial class Product
+    [Table("RegisteredUser")]
+    public partial class RegisteredUser
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Product()
+        public RegisteredUser()
         {
-            Product_in_shop = new HashSet<Product_in_shop>();
+            Newsletter_entry = new HashSet<Newsletter_entry>();
         }
 
         [StringLength(255)]
-        public string name { get; set; }
-
-        public double? price { get; set; }
+        public string country { get; set; }
 
         [StringLength(255)]
-        public string description { get; set; }
+        public string city { get; set; }
 
         [StringLength(255)]
-        public string state { get; set; }
+        public string region { get; set; }
 
         [StringLength(255)]
-        public string barcode { get; set; }
+        public string street { get; set; }
 
         [StringLength(255)]
-        public string picture { get; set; }
+        public string room_number { get; set; }
+
+        public int? birth_year { get; set; }
+
+        [StringLength(255)]
+        public string birth_month { get; set; }
+
+        public int? birth_day { get; set; }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int id_Product { get; set; }
-
-        public int fk_Shopid_Shop { get; set; }
-
-        public virtual Shop Shop { get; set; }
+        public int id_Person { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product_in_shop> Product_in_shop { get; set; }
+        public virtual ICollection<Newsletter_entry> Newsletter_entry { get; set; }
+
+        public virtual Person Person { get; set; }
     }
 }
