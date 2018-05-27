@@ -173,6 +173,10 @@
     <Compile Include="Migrations\201805271310310_addPicutreClass.Designer.cs">
       <DependentUpon>201805271310310_addPicutreClass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805271539543_AddedPictureUrl.cs" />
+    <Compile Include="Migrations\201805271539543_AddedPictureUrl.Designer.cs">
+      <DependentUpon>201805271539543_AddedPictureUrl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Admin_level.cs" />
@@ -194,6 +198,7 @@
     <Compile Include="Models\Unclassified_pictures.cs" />
     <Compile Include="Models\User_type.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\UnclassifiedPicutresModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -242,11 +247,11 @@
     <Content Include="Views\LearningParameters\LearningParametersForm.cshtml" />
     <Content Include="Views\SearchEngine\OpenSearchEngine.cshtml" />
     <Content Include="Views\LearningParameters\GetLearningParameters.cshtml" />
+    <Content Include="Views\PictureClassifiaction\getUnClassifiedPictures.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Discord\" />
-    <Folder Include="Views\PictureClassifiaction\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -270,6 +275,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805271310310_addPicutreClass.resx">
       <DependentUpon>201805271310310_addPicutreClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805271539543_AddedPictureUrl.resx">
+      <DependentUpon>201805271539543_AddedPictureUrl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

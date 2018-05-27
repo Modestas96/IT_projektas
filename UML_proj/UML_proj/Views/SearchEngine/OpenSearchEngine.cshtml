@@ -13,6 +13,7 @@
         margin: 4px 2px;
         opacity: 0.6;
         transition: 0.3s;
+        width: 350px;
     }
 
         .btn:hover {
@@ -22,4 +23,5 @@
 
 <h2>Search Engine</h2>
 <button class="btn" onclick="location.href='@Url.Action("LearningParametersForm", "LearningParameters")'"/>Change Learning Parameters</button><br />
+<button class="btn" onclick="location.href='@Url.Action("getUnClassifiedPictures", "PictureClassifiaction")'" />Classify Pictures</button><br />
 
