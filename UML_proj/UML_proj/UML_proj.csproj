@@ -166,13 +166,13 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Admin_level.cs" />
-    <Compile Include="Models\Model1.cs" />
+    <Compile Include="Models\ITProjektasDB.cs" />
+    <Compile Include="Models\Newsletter.cs" />
     <Compile Include="Models\Newsletter_entry.cs" />
     <Compile Include="Models\Newsletter_entry_state.cs" />
     <Compile Include="Models\NullObjectOwner.cs" />
     <Compile Include="Models\Owner_person_adapter.cs" />
     <Compile Include="Models\Person.cs" />
-    <Compile Include="Models\PersonPicturesAdapter.cs" />
     <Compile Include="Models\Person_state.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Product_in_shop.cs" />
@@ -180,7 +180,6 @@
     <Compile Include="Models\Search_parameters.cs" />
     <Compile Include="Models\Seller.cs" />
     <Compile Include="Models\Shop.cs" />
-    <Compile Include="Models\SNDTO.cs" />
     <Compile Include="Models\Subscription.cs" />
     <Compile Include="Models\Unclassified_pictures.cs" />
     <Compile Include="Models\User_type.cs" />

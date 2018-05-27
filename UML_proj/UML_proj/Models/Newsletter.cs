@@ -9,6 +9,7 @@ namespace UML_proj.Models
     [Table("Newsletter")]
     public partial class Newsletter
     {
+        IT_PROJEKTASEntities db = new IT_PROJEKTASEntities();
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Newsletter()
         {
@@ -16,12 +17,39 @@ namespace UML_proj.Models
             Subscriptions = new HashSet<Subscription>();
         }
 
+<<<<<<< HEAD
         [StringLength(255)]
         public string newest_message { get; set; }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id_Newsletter { get; set; }
+=======
+        public void insert()
+        {
+            db.Newsletters.Add(this);
+            db.SaveChanges();       
+        }
+
+        public bool update_newest_entry()
+        {
+            var result = db.Newsletters.SingleOrDefault(b => b.fk_person_id == fk_person_id);
+            if (result != null)
+            {
+                result.content = content;
+                db.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public string toString1()
+        {
+            return content + " " + fk_person_id.ToString();
+        }
+>>>>>>> master
 
         public int fk_Personid_Person { get; set; }
 

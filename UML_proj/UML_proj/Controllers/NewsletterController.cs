@@ -9,6 +9,9 @@ namespace UML_proj.Controllers
 {
     public class NewsletterController : Controller
     {
+
+        Subscribed_newsletter sub_letters = new Subscribed_newsletter();
+        Newsletter news_letter = new Newsletter();
         // GET: NewsletterForm
         public ActionResult open_form() // open_form
         {
@@ -38,7 +41,7 @@ namespace UML_proj.Controllers
 
 
             // 2. select all subed_newsletter who sub'd to this newsletter
-            var entries = select(id, true);
+            var entries = sub_letters.select(id, true);
 
             str1 += entries.Count();
 
@@ -81,6 +84,7 @@ namespace UML_proj.Controllers
             return View("NewsletterForm");
         }
 
+<<<<<<< HEAD
         public List<SNDTO> select(int id, bool newsletter)
         {
             // newsletter == true : all subs of this newsletter. false = a single person's sub list
@@ -112,5 +116,8 @@ namespace UML_proj.Controllers
                 return dataset;
             }
         }
+=======
+
+>>>>>>> master
     }
 }
