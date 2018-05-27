@@ -68,9 +68,9 @@ namespace UML_proj.Controllers
 
         private int QueryType(SearchViewModel searchParams) {         
             if(searchParams.SearchEntry.ImageQuery != null && searchParams.SearchEntry.ImageQuery.Length > 0)
-                return 1;
-            else if(searchParams.SearchEntry.TextQuery != null)
                 return 2;
+            else if(searchParams.SearchEntry.TextQuery != null)
+                return 1;
             return 0;
         }
 
