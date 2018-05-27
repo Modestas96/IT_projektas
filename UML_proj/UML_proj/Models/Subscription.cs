@@ -24,5 +24,11 @@ namespace UML_proj.Models
         public virtual Newsletter Newsletter { get; set; }
 
         public virtual Person Person { get; set; }
+
+        public int select()
+        {
+
+            return 1;
+        }
     }
 }

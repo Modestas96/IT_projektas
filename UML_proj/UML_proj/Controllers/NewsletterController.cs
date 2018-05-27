@@ -10,7 +10,7 @@ namespace UML_proj.Controllers
     public class NewsletterController : Controller
     {
 
-        Subscription sub_letters = new Subscription();
+        Subscription subs = new Subscription();
         Newsletter news_letter = new Newsletter();
         // GET: NewsletterForm
         public ActionResult open_form() // open_form
@@ -27,13 +27,12 @@ namespace UML_proj.Controllers
             newsletter.fk_Personid_Person = id;
 
             // 1. update the approriate sub's content with the newest one.
-            //var state = newsletter.update_newest_entry();
-            var state = true;
-            //ViewBag.Message = newsletter.toString1();
+            var state = newsletter.update();
+            int count = subs.select();
             string str1 = "";
             if (state)
             {
-                str1 = "Successfully sent your message! Total subs receiving this message: ";
+                str1 = "Successfully sent your message! Total subs receiving this message: "+count;
             }
             else
             {

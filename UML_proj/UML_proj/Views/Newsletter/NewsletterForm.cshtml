@@ -19,8 +19,8 @@
 
 @using (Html.BeginForm("send_new_entry", "Newsletter", FormMethod.Post))
 {
-    @Html.TextBoxFor(model => model.content)
-    @Html.ValidationMessageFor(model => model.content)
+    @Html.TextBoxFor(model => model.newest_message)
+    @Html.ValidationMessageFor(model => model.newest_message)
     
     <button type="submit">Send</button>
 }
