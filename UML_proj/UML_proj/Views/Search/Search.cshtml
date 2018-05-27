@@ -78,19 +78,17 @@ hgroup h2.lead { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; 
                 {
                     <article class="search-result row">
                         <div class="col-xs-12 col-sm-12 col-md-3">
-                            <a href="#" title="Lorem ipsum" class="thumbnail"><img src='@Model.SearchResult[i]["ImageSrc"]' alt="Lorem ipsum" /></a>
+                            <a href="#" title="Lorem ipsum" class="thumbnail"><img width="200" height="200" src='@Model.SearchResult[i]["picture"]' alt="Lorem ipsum" /></a>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-2">
                             <ul class="meta-search">
-                                <li><i class="glyphicon glyphicon-calendar"></i> <span>02/15/2014</span></li>
-                                <li><i class="glyphicon glyphicon-time"></i> <span>4:28 pm</span></li>
-                                <li><i class="glyphicon glyphicon-tags"></i> <span>People</span></li>
+                                <li><i class="glyphicon glyphicon-tags"></i> <span>@Model.SearchResult[i]["barcode"]</span></li>
                             </ul>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-                            <h3><a href="#" title="">Voluptatem, exercitationem, suscipit, distinctio</a></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, exercitationem, suscipit, distinctio, qui sapiente aspernatur molestiae non corporis magni sit sequi iusto debitis delectus doloremque.</p>
-                            <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
+                            <h3><a href="#" title="">@Model.SearchResult[i]["name"]</a></h3>
+                            <p>@Model.SearchResult[i]["description"]</p>
+                            <p>@Model.SearchResult[i]["bestDeal"]</p>
                         </div>
                         <span class="clearfix borda"></span>
                     </article>

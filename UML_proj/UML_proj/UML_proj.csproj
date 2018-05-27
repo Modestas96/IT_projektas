@@ -160,6 +160,7 @@
     <Compile Include="Controllers\ImageSearchController.cs" />
     <Compile Include="Controllers\LearningParametersController.cs" />
     <Compile Include="Controllers\NewsletterController.cs" />
+    <Compile Include="Controllers\PriceComparisonController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\PictureClassifiactionController.cs" />
@@ -260,6 +261,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Discord\" />
     <Folder Include="Views\ImageSeaerch\" />
+    <Folder Include="Views\PriceComparison\" />
     <Folder Include="Views\TextSearch\" />
   </ItemGroup>
   <ItemGroup>

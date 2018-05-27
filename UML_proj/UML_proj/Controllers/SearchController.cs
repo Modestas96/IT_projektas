@@ -25,16 +25,25 @@ namespace UML_proj.Controllers
             {
 
             }
-            var res =  new List<Dictionary<String, String>>();
+           
             TextSearchController TSC = new TextSearchController();
-            res = TSC.FindProduct(searchParams.SearchEntry.TextQuery);
-            var dicTest = new Dictionary<String, String>();
-            dicTest["vardas"] = "pituhas";
-            dicTest["ImageSrc"] = "https://lbbfinal.files.wordpress.com/2015/01/logo.gif?w=720";
-            res.Add(dicTest);
-            res.Add(dicTest);
-            res.Add(dicTest);
-            searchParams.SearchResult = res;
+
+            var res = TSC.FindProduct(searchParams.SearchEntry.TextQuery);
+            var passableObj = new List<Dictionary<String, String> >();
+
+            foreach (var x in res){
+                
+                var tempMap = new Dictionary<String, String>();
+                tempMap["name"] = x.Item1.name;
+                tempMap["picture"] = x.Item1.picture;
+                tempMap["price"] = x.Item1.price.ToString();
+                tempMap["description"] = x.Item1.description;
+                tempMap["barcode"] = x.Item1.barcode;
+                tempMap["bestDeal"] = x.Item2;
+                passableObj.Add(tempMap);
+            }
+
+            searchParams.SearchResult = passableObj;
             return View("Search", searchParams);
         }
 
