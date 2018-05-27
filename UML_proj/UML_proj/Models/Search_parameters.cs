@@ -5,6 +5,7 @@ namespace UML_proj.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    
 
     public partial class Search_parameters
     {
@@ -27,5 +28,17 @@ namespace UML_proj.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Unclassified_pictures> Unclassified_pictures { get; set; }
+
+
+        public void create()
+        {
+            ITProjektasDB db = new ITProjektasDB();
+            if (this != null)
+            {
+                id_Search_parameters = new Random((int)DateTime.Now.Ticks).Next(1, 2000000000);
+                db.Search_parameters.Add(this);
+                db.SaveChanges();
+            }
+        }
     }
 }

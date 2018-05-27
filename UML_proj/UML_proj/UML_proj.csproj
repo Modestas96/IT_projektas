@@ -229,6 +229,7 @@
     <Content Include="Views\Subscription\SubscriptionList.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\UserDashBoard.cshtml" />
+    <Content Include="Views\LearningParameters\LearningParametersForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
