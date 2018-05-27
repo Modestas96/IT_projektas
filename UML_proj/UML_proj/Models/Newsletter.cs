@@ -47,6 +47,7 @@ namespace UML_proj.Models
             }
         }
 
+
         public int fk_Personid_Person { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
