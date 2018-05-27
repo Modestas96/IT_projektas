@@ -42,7 +42,7 @@ namespace UML_proj.Controllers
             {
                 return false;
             }
-            string token = "Mzk5NDczNjQ4NjA1NTkzNjEx.DTNmeQ.wH7Uc-QR6219VYXC1iwlPPvZtWs";
+            string token = "insert_key_here";
             //string channel = "399455712603799565"; // archi test land
             httpClient.DefaultRequestHeaders.Add("Authorization", "Bot " + token);
             httpClient.DefaultRequestHeaders.Add("User-Agent", "Felkin#0101 (For a project, short term)");
