@@ -15,8 +15,7 @@ namespace UML_proj.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id_Unclassified_pictures { get; set; }
 
-        public string picture_class { get; set; }
-
+        public string picture_class { get;set; }
 
         public string picutre_url { get; set; }
 

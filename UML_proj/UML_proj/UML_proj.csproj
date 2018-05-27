@@ -156,12 +156,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\DiscordController.cs" />
-    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageSearchController.cs" />
     <Compile Include="Controllers\LearningParametersController.cs" />
     <Compile Include="Controllers\NewsletterController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\SubscriptionsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -170,10 +169,14 @@
     <Compile Include="Migrations\201805271512586_rer.cs" />
     <Compile Include="Migrations\201805271512586_rer.Designer.cs"/>
       <DependentUpon>201805271512586_rer.cs</DependentUpon>
+=======
+>>>>>>> parent of 5dd1846... Merge pull request #10 from Modestas96/user_communication_subsystem_work_1
     <Compile Include="Controllers\PriceComparisonController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\PictureClassifiactionController.cs" />
     <Compile Include="Controllers\SearchEngineController.cs" />
+    <Compile Include="Controllers\SubscriptionController.cs" />
     <Compile Include="Controllers\TextSearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -254,20 +257,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Subscription\ProfilePage.cshtml" />
     <Content Include="Views\Newsletter\NewsletterForm.cshtml" />
+    <Content Include="Views\Subscription\SubscriptionList.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\UserDashBoard.cshtml" />
-    <Content Include="Views\Subscriptions\Create.cshtml" />
-    <Content Include="Views\Subscriptions\Delete.cshtml" />
-    <Content Include="Views\Subscriptions\Details.cshtml" />
-    <Content Include="Views\Subscriptions\Edit.cshtml" />
-    <Content Include="Views\Subscriptions\Index.cshtml" />
-    <Content Include="Views\Subscriptions\ProfilePage.cshtml" />
-    <Content Include="Views\Products\Create.cshtml" />
-    <Content Include="Views\Products\Delete.cshtml" />
-    <Content Include="Views\Products\Details.cshtml" />
-    <Content Include="Views\Products\Edit.cshtml" />
-    <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\LearningParameters\LearningParametersForm.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\SearchEngine\OpenSearchEngine.cshtml" />
@@ -277,7 +271,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Discord\" />
-    <Folder Include="Views\Email\" />
     <Folder Include="Views\ImageSeaerch\" />
     <Folder Include="Views\PriceComparison\" />
     <Folder Include="Views\TextSearch\" />
@@ -299,11 +292,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805271512586_rer.resx">
-      <DependentUpon>201805271512586_rer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805271515273_adding_recei_forms.resx">
-      <DependentUpon>201805271515273_adding_recei_forms.cs</DependentUpon>
     <EmbeddedResource Include="Migrations\201805271308387_Initial.resx">
       <DependentUpon>201805271308387_Initial.cs</DependentUpon>
     </EmbeddedResource>
