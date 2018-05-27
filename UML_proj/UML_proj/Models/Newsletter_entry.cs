@@ -25,6 +25,9 @@ namespace UML_proj.Models
 
         public virtual Newsletter Newsletter { get; set; }
 
+        [StringLength(255)]
+        public string receit_forms { get; set; }
+
         public virtual RegisteredUser RegisteredUser { get; set; }
 
         public virtual Newsletter_entry_state Newsletter_entry_state { get; set; }

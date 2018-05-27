@@ -17,6 +17,7 @@ namespace UML_proj.Models
 
         public string picture_class { get; set; }
 
+
         public string picutre_url { get; set; }
 
         public int fk_Search_parametersid_Search_parameters { get; set; }
