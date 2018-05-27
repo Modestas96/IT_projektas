@@ -160,6 +160,17 @@
     <Compile Include="Controllers\ImageSearchController.cs" />
     <Compile Include="Controllers\LearningParametersController.cs" />
     <Compile Include="Controllers\NewsletterController.cs" />
+<<<<<<< HEAD
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\SubscriptionsController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805271512586_rer.cs" />
+    <Compile Include="Migrations\201805271512586_rer.Designer.cs"/>
+      <DependentUpon>201805271512586_rer.cs</DependentUpon>
+=======
+>>>>>>> parent of 5dd1846... Merge pull request #10 from Modestas96/user_communication_subsystem_work_1
     <Compile Include="Controllers\PriceComparisonController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
