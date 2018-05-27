@@ -5,22 +5,22 @@ namespace UML_proj.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class Model1 : DbContext
+    public partial class ITProjektasDB : DbContext
     {
-        public Model1()
-            : base("name=Model1")
+        public ITProjektasDB()
+            : base("name=ITProjektasDB")
         {
         }
 
         public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Admin_level> Admin_level { get; set; }
+        public virtual DbSet<Newsletter> Newsletters { get; set; }
         public virtual DbSet<Newsletter_entry> Newsletter_entry { get; set; }
         public virtual DbSet<Newsletter_entry_state> Newsletter_entry_state { get; set; }
         public virtual DbSet<NullObjectOwner> NullObjectOwners { get; set; }
         public virtual DbSet<Owner_person_adapter> Owner_person_adapter { get; set; }
         public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<Person_state> Person_state { get; set; }
-        public virtual DbSet<PersonPicturesAdapter> PersonPicturesAdapters { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Product_in_shop> Product_in_shop { get; set; }
         public virtual DbSet<RegisteredUser> RegisteredUsers { get; set; }
@@ -34,7 +34,7 @@ namespace UML_proj.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Admin>()
-                .Property(e => e.Admin_vardas)
+                .Property(e => e.name)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Admin_level>()
@@ -45,7 +45,23 @@ namespace UML_proj.Models
             modelBuilder.Entity<Admin_level>()
                 .HasMany(e => e.Admins)
                 .WithOptional(e => e.Admin_level)
-                .HasForeignKey(e => e.Teises);
+                .HasForeignKey(e => e.rights);
+
+            modelBuilder.Entity<Newsletter>()
+                .Property(e => e.newest_message)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Newsletter>()
+                .HasMany(e => e.Newsletter_entry)
+                .WithRequired(e => e.Newsletter)
+                .HasForeignKey(e => e.fk_Newsletterid_Newsletter)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Newsletter>()
+                .HasMany(e => e.Subscriptions)
+                .WithRequired(e => e.Newsletter)
+                .HasForeignKey(e => e.fk_Newsletterid_Newsletter)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Newsletter_entry_state>()
                 .Property(e => e.name)
@@ -78,8 +94,18 @@ namespace UML_proj.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Person>()
+                .Property(e => e.user_name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Person>()
                 .HasOptional(e => e.Admin)
                 .WithRequired(e => e.Person);
+
+            modelBuilder.Entity<Person>()
+                .HasMany(e => e.Newsletters)
+                .WithRequired(e => e.Person)
+                .HasForeignKey(e => e.fk_Personid_Person)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Person>()
                 .HasMany(e => e.Owner_person_adapter)
@@ -174,11 +200,7 @@ namespace UML_proj.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Search_parameters>()
-                .Property(e => e.Svoriai)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Search_parameters>()
-                .Property(e => e.Optimizavimo_metodas)
+                .Property(e => e.optimization_method)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Search_parameters>()
@@ -188,11 +210,11 @@ namespace UML_proj.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Seller>()
-                .Property(e => e.imones_kodas)
+                .Property(e => e.company_code)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Shop>()
-                .Property(e => e.Pavadinimas)
+                .Property(e => e.name)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Shop>()

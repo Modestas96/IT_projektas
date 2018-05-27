@@ -19,6 +19,10 @@ namespace UML_proj.Models
 
         public int fk_Personid_Person { get; set; }
 
+        public int fk_Newsletterid_Newsletter { get; set; }
+
+        public virtual Newsletter Newsletter { get; set; }
+
         public virtual Person Person { get; set; }
     }
 }

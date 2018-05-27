@@ -6,31 +6,31 @@ namespace UML_proj.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Shop")]
-    public partial class Shop
+    [Table("Newsletter")]
+    public partial class Newsletter
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Shop()
+        public Newsletter()
         {
-            Products = new HashSet<Product>();
-            Product_in_shop = new HashSet<Product_in_shop>();
+            Newsletter_entry = new HashSet<Newsletter_entry>();
+            Subscriptions = new HashSet<Subscription>();
         }
 
         [StringLength(255)]
-        public string name { get; set; }
+        public string newest_message { get; set; }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int id_Shop { get; set; }
+        public int id_Newsletter { get; set; }
 
         public int fk_Personid_Person { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Newsletter_entry> Newsletter_entry { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Subscription> Subscriptions { get; set; }
+
         public virtual Person Person { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product_in_shop> Product_in_shop { get; set; }
     }
 }

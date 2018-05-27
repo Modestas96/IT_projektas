@@ -14,15 +14,12 @@ namespace UML_proj.Models
             Unclassified_pictures = new HashSet<Unclassified_pictures>();
         }
 
-        public double? Apsimokymo_greitis { get; set; }
+        public double? learning_speed { get; set; }
 
-        [StringLength(220)]
-        public string Svoriai { get; set; }
+        [StringLength(225)]
+        public string optimization_method { get; set; }
 
-        [StringLength(220)]
-        public string Optimizavimo_metodas { get; set; }
-
-        public bool? Yra_pagrindinis { get; set; }
+        public bool? isPrimary { get; set; }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]

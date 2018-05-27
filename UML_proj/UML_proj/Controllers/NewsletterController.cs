@@ -84,7 +84,7 @@ namespace UML_proj.Controllers
         public List<SNDTO> select(int id, bool newsletter)
         {
             // newsletter == true : all subs of this newsletter. false = a single person's sub list
-            IT_PROJEKTASEntities db = new IT_PROJEKTASEntities();
+            ITProjektasDB db = new ITProjektasDB();
             if (newsletter)
             {
                 var dataset = db.Subscribed_newsletter

@@ -10,9 +10,9 @@ namespace UML_proj.Models
     public partial class Admin
     {
         [StringLength(255)]
-        public string Admin_vardas { get; set; }
+        public string name { get; set; }
 
-        public int? Teises { get; set; }
+        public int? rights { get; set; }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]

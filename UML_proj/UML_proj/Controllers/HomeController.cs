@@ -23,7 +23,7 @@ namespace UML_proj.Controllers
         {
             if (ModelState.IsValid)
             {
-                Model1 db = new Model1();
+                ITProjektasDB db = new ITProjektasDB();
                 //Search_parameters param = db.Search_parameters.SingleOrDefault(x => x.id_Search_parameters == 2);
                 
                 var obj = db.People.Where(a => a.name.Equals(objUser.name) && a.password.Equals(objUser.password)).FirstOrDefault();

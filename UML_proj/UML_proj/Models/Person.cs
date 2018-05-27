@@ -12,6 +12,7 @@ namespace UML_proj.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Person()
         {
+            Newsletters = new HashSet<Newsletter>();
             Owner_person_adapter = new HashSet<Owner_person_adapter>();
             Subscriptions = new HashSet<Subscription>();
             Shops = new HashSet<Shop>();
@@ -38,6 +39,9 @@ namespace UML_proj.Models
         [Column(TypeName = "date")]
         public DateTime? registration_date { get; set; }
 
+        [StringLength(255)]
+        public string user_name { get; set; }
+
         public int? state { get; set; }
 
         [Key]
@@ -45,6 +49,9 @@ namespace UML_proj.Models
         public int id_Person { get; set; }
 
         public virtual Admin Admin { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Newsletter> Newsletters { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Owner_person_adapter> Owner_person_adapter { get; set; }

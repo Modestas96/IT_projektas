@@ -10,7 +10,7 @@ namespace UML_proj.Models
     public partial class Seller
     {
         [StringLength(255)]
-        public string imones_kodas { get; set; }
+        public string company_code { get; set; }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]

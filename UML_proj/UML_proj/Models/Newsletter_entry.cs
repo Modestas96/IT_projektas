@@ -14,7 +14,11 @@ namespace UML_proj.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id_Newsletter_entry { get; set; }
 
+        public int fk_Newsletterid_Newsletter { get; set; }
+
         public int fk_RegisteredUserid_Person { get; set; }
+
+        public virtual Newsletter Newsletter { get; set; }
 
         public virtual RegisteredUser RegisteredUser { get; set; }
 

@@ -9,7 +9,7 @@ namespace UML_proj.Models
     public partial class Unclassified_pictures
     {
         [Column(TypeName = "date")]
-        public DateTime? Creation_Date { get; set; }
+        public DateTime? upload_date { get; set; }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
