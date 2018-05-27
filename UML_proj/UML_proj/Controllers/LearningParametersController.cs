@@ -18,19 +18,28 @@ namespace UML_proj.Controllers
         public ActionResult Update(Search_parameters updatedParameters)
         {
             ITProjektasDB db = new ITProjektasDB();
-            if (updatedParameters != null)
+            Search_parameters notupdatedParameters = db.Search_parameters.SingleOrDefault(
+                                                        x => x.id_Search_parameters == updatedParameters.id_Search_parameters
+                                                     );
+            if (notupdatedParameters != null)
             {
-                db.Search_parameters.Add(updatedParameters);
-                db.SaveChanges();
+                db.Entry(notupdatedParameters).CurrentValues.SetValues(updatedParameters);
             }
-            return View("LearningParametersForm", updatedParameters);
-        }
+            db.SaveChanges();
 
-        public ActionResult LearningParametersForm()
+            return RedirectToAction("GetLearningParameters", "LearningParameters");
+        }
+        public ActionResult GetLearningParameters()
         {
             ITProjektasDB db = new ITProjektasDB();
             
-            Search_parameters param = db.Search_parameters.SingleOrDefault(x => x.id_Search_parameters == 2);
+            return View(db.Search_parameters);
+        }
+        public ActionResult LearningParametersForm(int id)
+        {
+            ITProjektasDB db = new ITProjektasDB();
+            
+            Search_parameters param = db.Search_parameters.SingleOrDefault(x => x.id_Search_parameters == id);
 
             return View(param);
         }
