@@ -84,7 +84,6 @@ namespace UML_proj.Controllers
             return View("NewsletterForm");
         }
 
-<<<<<<< HEAD
         public List<SNDTO> select(int id, bool newsletter)
         {
             // newsletter == true : all subs of this newsletter. false = a single person's sub list
@@ -116,8 +115,6 @@ namespace UML_proj.Controllers
                 return dataset;
             }
         }
-=======
 
->>>>>>> master
     }
 }
