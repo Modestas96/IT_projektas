@@ -26,7 +26,7 @@ namespace UML_proj.Controllers
                 ITProjektasDB db = new ITProjektasDB();
                 //Search_parameters param = db.Search_parameters.SingleOrDefault(x => x.id_Search_parameters == 2);
                 
-                var obj = db.People.Where(a => a.name.Equals(objUser.name) && a.password.Equals(objUser.password)).FirstOrDefault();
+                var obj = db.People.Where(a => a.user_name.Equals(objUser.user_name) && a.password.Equals(objUser.password)).FirstOrDefault();
                 if (obj != null)
                 {
                     Session["UserID"] = obj.id_Person.ToString();

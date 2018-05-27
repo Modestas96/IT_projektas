@@ -19,19 +19,19 @@
         }
         <table>
             <tr>
-                <td>@Html.LabelFor(a => a.Vardas)</td>
-                <td>@Html.TextBoxFor(a => a.Vardas)</td>
-                <td>@Html.ValidationMessageFor(a => a.Vardas)</td>
+                <td>@Html.LabelFor(a => a.user_name)</td>
+                <td>@Html.TextBoxFor(a => a.user_name)</td>
+                <td>@Html.ValidationMessageFor(a => a.user_name)</td>
             </tr>
             <tr>
                 <td>
-                    @Html.LabelFor(a => a.Slaptažodis)
+                    @Html.LabelFor(a => a.password)
                 </td>
                 <td>
-                    @Html.PasswordFor(a => a.Slaptažodis)
+                    @Html.PasswordFor(a => a.password)
                 </td>
                 <td>
-                    @Html.ValidationMessageFor(a => a.Slaptažodis)
+                    @Html.ValidationMessageFor(a => a.password)
                 </td>
             </tr>
             <tr>

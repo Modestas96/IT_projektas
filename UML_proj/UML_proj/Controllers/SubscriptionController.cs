@@ -10,8 +10,8 @@ namespace UML_proj.Controllers
 {
     public class SubscriptionController : Controller
     {
-        Subscribed_newsletter sub_letters = new Subscribed_newsletter();
-        IT_PROJEKTASEntities db = new IT_PROJEKTASEntities();
+        Subscription sub_letters = new Subscription();
+        ITProjektasDB db = new ITProjektasDB();
 
         // GET: ProfilePage
         public ActionResult open_profile_page() // open_profile_page()
@@ -33,7 +33,7 @@ namespace UML_proj.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Subscribed_newsletter sn = db.Subscribed_newsletter.Find(id);
+            Subscription sn = db.Subscriptions.Find(id);
             if (sn == null)
             {
                 return HttpNotFound();

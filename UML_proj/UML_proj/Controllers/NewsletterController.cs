@@ -10,7 +10,7 @@ namespace UML_proj.Controllers
     public class NewsletterController : Controller
     {
 
-        Subscribed_newsletter sub_letters = new Subscribed_newsletter();
+        Subscription sub_letters = new Subscription();
         Newsletter news_letter = new Newsletter();
         // GET: NewsletterForm
         public ActionResult open_form() // open_form
@@ -21,13 +21,14 @@ namespace UML_proj.Controllers
 
         public ActionResult send_new_entry(Newsletter newsletter) // send_new_entry
         {
-            ViewData["value"] = newsletter.content + "\nmessage sent!";
+            ViewData["value"] = newsletter.newest_message + "\nmessage sent!";
             //ViewBag.Message = newsletter.content + "\nmessage sent!";
             int id = Int32.Parse(Session["UserID"].ToString());
-            newsletter.fk_person_id = id;
+            newsletter.fk_Personid_Person = id;
 
             // 1. update the approriate sub's content with the newest one.
-            var state = newsletter.update_newest_entry();
+            //var state = newsletter.update_newest_entry();
+            var state = true;
             //ViewBag.Message = newsletter.toString1();
             string str1 = "";
             if (state)
@@ -41,9 +42,10 @@ namespace UML_proj.Controllers
 
 
             // 2. select all subed_newsletter who sub'd to this newsletter
-            var entries = sub_letters.select(id, true);
+            //var entries = sub_letters.select(id, true);
 
-            str1 += entries.Count();
+            //str1 += entries.Count();
+            str1 += 1;
 
 
             // 3. generate newsletter_entries
@@ -84,37 +86,6 @@ namespace UML_proj.Controllers
             return View("NewsletterForm");
         }
 
-        public List<SNDTO> select(int id, bool newsletter)
-        {
-            // newsletter == true : all subs of this newsletter. false = a single person's sub list
-            ITProjektasDB db = new ITProjektasDB();
-            if (newsletter)
-            {
-                var dataset = db.Subscribed_newsletter
-                    .Where(x => x.fk_newsletter_id == id)
-                    .Select(x => new SNDTO
-                    {
-                        receit_form = x.receit_form,
-                        id = x.id,
-                        fk_subscriber_id = x.fk_subscriber_id,
-                        fk_newsletter_id = x.fk_newsletter_id
-                    }).ToList();
-                return dataset;
-            }
-            else
-            {
-                var dataset = db.Subscribed_newsletter
-                    .Where(x => x.fk_subscriber_id == id)
-                    .Select(x => new SNDTO
-                    {
-                        receit_form = x.receit_form,
-                        id = x.id,
-                        fk_subscriber_id = x.fk_subscriber_id,
-                        fk_newsletter_id = x.fk_newsletter_id
-                    }).ToList();
-                return dataset;
-            }
-        }
 
     }
 }
