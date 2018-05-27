@@ -71,7 +71,7 @@ hgroup h2.lead { font: normal normal 1.125em "Roboto",Arial,Verdana,sans-serif; 
         <div class="container">
             <hgroup class="mb20">
                 <h1>Search Results</h1>
-                <h2 class="lead"><strong class="text-danger">@Model.SearchResult.Count</strong> results were found for the search for <strong class="text-danger">@(Model.SearchEntry.TextQuery.Length != null ? Model.SearchEntry.TextQuery : Model.SearchEntry.ImageQuery)</strong></h2>
+                <h2 class="lead"><strong class="text-danger">@Model.SearchResult.Count</strong> results were found for the search  <strong class="text-danger">@(Model.SearchEntry.TextQuery != null ? Model.SearchEntry.TextQuery : Model.SearchEntry.ImageQuery)</strong></h2>
             </hgroup>
             <section class="col-xs-12 col-sm-6 col-md-12">
                 @for (var i = 0; i < Model.SearchResult.Count; i++)

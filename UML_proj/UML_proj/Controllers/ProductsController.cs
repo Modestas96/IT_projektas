@@ -16,7 +16,7 @@ namespace UML_proj.Controllers
 
             var res = new List<Product>();
             var intermed = db.Products.Where(
-                x => x.name.Contains(textQuery) || textQuery.Contains(x.name)
+                x => x.name.Contains(textQuery) == true
                ).ToList();
             List<Tuple<Product, String>> ret = new List<Tuple<Product, string>>();
             PriceComparisonController PCC = new PriceComparisonController();

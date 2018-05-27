@@ -20,15 +20,29 @@ namespace UML_proj.Controllers
         [HttpPost]
         public ActionResult Search(SearchViewModel searchParams)
         {
+            String txtQuery = "";
             int type = QueryType(searchParams);
             if(type == 0)
             {
-
+                return View("Search", new SearchViewModel());
+            }else if(type == 1)
+            {
+                txtQuery = searchParams.SearchEntry.TextQuery;
             }
-           
+            else
+            {
+                ImageSearchController ISC = new ImageSearchController();
+                String gotRes = ISC.RecognizeImage(searchParams.SearchEntry.ImageQuery);
+                if (!ParseName(gotRes))
+                {
+                    return View("Search", new SearchViewModel());
+                }
+                txtQuery = gotRes;
+            }
+
             TextSearchController TSC = new TextSearchController();
 
-            var res = TSC.FindProduct(searchParams.SearchEntry.TextQuery);
+            var res = TSC.FindProduct(txtQuery);
             var passableObj = new List<Dictionary<String, String> >();
 
             foreach (var x in res){
@@ -47,12 +61,17 @@ namespace UML_proj.Controllers
             return View("Search", searchParams);
         }
 
+        private bool ParseName(string gotRes)
+        {
+            return gotRes != "-1";
+        }
+
         private int QueryType(SearchViewModel searchParams) {         
-            if(searchParams == null)
-                return 0;
-            else if(searchParams.SearchEntry.TextQuery != null)
+            if(searchParams.SearchEntry.ImageQuery != null && searchParams.SearchEntry.ImageQuery.Length > 0)
                 return 1;
-            return 2;
+            else if(searchParams.SearchEntry.TextQuery != null)
+                return 2;
+            return 0;
         }
 
         // GET: Search/Details/5
