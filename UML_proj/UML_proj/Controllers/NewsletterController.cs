@@ -12,6 +12,7 @@ namespace UML_proj.Controllers
 
         Subscription subs = new Subscription();
         Newsletter news_letter = new Newsletter();
+        Newsletter_entry entries = new Newsletter_entry();
         // GET: NewsletterForm
         public ActionResult open_form() // open_form
         {
@@ -27,10 +28,16 @@ namespace UML_proj.Controllers
             newsletter.fk_Personid_Person = id;
 
             // 1. update the approriate sub's content with the newest one.
-            var state = newsletter.update();
-            int count = subs.select();
+            int newsletter_id = newsletter.update();
+            subs.fk_Newsletterid_Newsletter = newsletter_id;
+
+            // 2. select all subed_newsletter who sub'd to this newsletter
+            List<Subscription> subs_temp = subs.select_subscribers();
+
+            int count = subs_temp.Count();
             string str1 = "";
-            if (state)
+
+            if (id>=0)
             {
                 str1 = "Successfully sent your message! Total subs receiving this message: "+count;
             }
@@ -40,14 +47,9 @@ namespace UML_proj.Controllers
             }
 
 
-            // 2. select all subed_newsletter who sub'd to this newsletter
-            //var entries = sub_letters.select(id, true);
-
-            //str1 += entries.Count();
-            str1 += 1;
-
-
             // 3. generate newsletter_entries
+            int message_count = entries.insert(newsletter,subs_temp);
+
             // 4. reselect all the entries (not rly neccessary)
             // 5. initiate the sending sequence below
 

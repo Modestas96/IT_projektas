@@ -13,6 +13,7 @@ namespace UML_proj.Controllers
     public class SubscriptionsController : Controller
     {
         private ITProjektasDB db = new ITProjektasDB();
+        private Subscription subs = new Subscription();
 
         // GET: Subscriptions
         public ActionResult Index()
@@ -22,14 +23,16 @@ namespace UML_proj.Controllers
         }
         public ActionResult open_subscription_list()
         {
-            var subscriptions = db.Subscriptions.Include(s => s.Newsletter).Include(s => s.Person);
-            return View("Index",subscriptions.ToList());
+            int id = Int32.Parse(Session["UserID"].ToString());
+            subs.fk_Personid_Person = id;
+            var subscriptions = subs.select_personal_subs();
+            return View("Index",subscriptions);
         }
 
         public ActionResult open_profile_page()
         {
 
-            return View("ProfilePage");
+            return View("ProfilePage"); // open
         }
 
         // GET: Subscriptions/Details/5

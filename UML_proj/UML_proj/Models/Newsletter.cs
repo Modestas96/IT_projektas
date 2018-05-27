@@ -32,18 +32,18 @@ namespace UML_proj.Models
             db.SaveChanges();       
         }
 
-        public bool update()
+        public int update()
         {
             var result = db.Newsletters.SingleOrDefault(b => b.fk_Personid_Person == fk_Personid_Person);
             if (result != null)
             {
                 result.newest_message = newest_message;
                 db.SaveChanges();
-                return true;
+                return result.id_Newsletter;
             }
             else
             {
-                return false;
+                return -1;
             }
         }
 
