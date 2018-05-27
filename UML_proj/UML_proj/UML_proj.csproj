@@ -285,7 +285,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Subscription\ProfilePage.cshtml" />
     <Content Include="Views\Newsletter\NewsletterForm.cshtml" />
-    <Content Include="Views\Subscription\SubscriptionList.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\UserDashBoard.cshtml" />
     <Content Include="Views\Subscribed_newsletter\Create.cshtml" />

@@ -47,6 +47,9 @@ namespace UML_proj.Controllers
 
 
             // 3. generate newsletter_entries
+
+
+
             // 4. reselect all the entries (not rly neccessary)
             // 5. initiate the sending sequence below
 

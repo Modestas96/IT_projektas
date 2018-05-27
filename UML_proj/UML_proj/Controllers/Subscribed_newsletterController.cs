@@ -13,12 +13,14 @@ namespace UML_proj.Controllers
     public class Subscribed_newsletterController : Controller
     {
         private IT_PROJEKTASEntities db = new IT_PROJEKTASEntities();
-
+        Subscribed_newsletter sub_letters = new Subscribed_newsletter();
         // GET: Subscribed_newsletter
         public ActionResult Index()
         {
-            var subscribed_newsletter = db.Subscribed_newsletter.Include(s => s.Newsletter).Include(s => s.Person);
-            return View(subscribed_newsletter.ToList());
+            int id = Int32.Parse(Session["UserID"].ToString());
+            //var subscribed_newsletter = sub_letters.select(id,false);
+            var subscribed_newsletter = db.Subscribed_newsletter.Where(x => x.fk_subscriber_id == id).Include(s => s.Newsletter).Include(s => s.Person);
+            return View(subscribed_newsletter);
         }
 
         // GET: Subscribed_newsletter/Details/5
