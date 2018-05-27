@@ -5,6 +5,7 @@ namespace UML_proj.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Linq;
 
     [Table("Newsletter")]
     public partial class Newsletter
@@ -29,6 +30,21 @@ namespace UML_proj.Models
         {
             db.Newsletters.Add(this);
             db.SaveChanges();       
+        }
+
+        public int update()
+        {
+            var result = db.Newsletters.SingleOrDefault(b => b.fk_Personid_Person == fk_Personid_Person);
+            if (result != null)
+            {
+                result.newest_message = newest_message;
+                db.SaveChanges();
+                return result.id_Newsletter;
+            }
+            else
+            {
+                return -1;
+            }
         }
 
         public int fk_Personid_Person { get; set; }

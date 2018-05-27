@@ -8,10 +8,9 @@
 }
 
 <h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
 
-<h2>Newsletter Form</h2>
+
 
 <p>Here you may post a new newsletter entry to send to your subscribers!</p>
 
@@ -19,8 +18,10 @@
 
 @using (Html.BeginForm("send_new_entry", "Newsletter", FormMethod.Post))
 {
-    @Html.TextBoxFor(model => model.content)
-    @Html.ValidationMessageFor(model => model.content)
+    @Html.TextBoxFor(model => model.newest_message)
+    @Html.ValidationMessageFor(model => model.newest_message)
     
     <button type="submit">Send</button>
 }
+
+<h3>@ViewBag.Message</h3>
