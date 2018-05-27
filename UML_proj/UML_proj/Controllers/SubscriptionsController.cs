@@ -18,8 +18,8 @@ namespace UML_proj.Controllers
         // GET: Subscriptions
         public ActionResult Index()
         {
-            var subscriptions = db.Subscriptions.Include(s => s.Newsletter).Include(s => s.Person);
-            return View(subscriptions.ToList());
+            var subscriptions = subs.select_personal_subs();
+            return View(subscriptions);
         }
         public ActionResult open_subscription_list()
         {
