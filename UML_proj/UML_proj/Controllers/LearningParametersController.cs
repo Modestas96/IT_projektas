@@ -27,14 +27,19 @@ namespace UML_proj.Controllers
             }
             db.SaveChanges();
 
-            return View("LearningParametersForm", updatedParameters);
+            return RedirectToAction("GetLearningParameters", "LearningParameters");
         }
-
-        public ActionResult LearningParametersForm()
+        public ActionResult GetLearningParameters()
         {
             ITProjektasDB db = new ITProjektasDB();
             
-            Search_parameters param = db.Search_parameters.SingleOrDefault(x => x.id_Search_parameters == 406538794);
+            return View(db.Search_parameters);
+        }
+        public ActionResult LearningParametersForm(int id)
+        {
+            ITProjektasDB db = new ITProjektasDB();
+            
+            Search_parameters param = db.Search_parameters.SingleOrDefault(x => x.id_Search_parameters == id);
 
             return View(param);
         }
