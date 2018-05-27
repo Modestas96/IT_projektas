@@ -159,10 +159,19 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LearningParametersController.cs" />
     <Compile Include="Controllers\NewsletterController.cs" />
+    <Compile Include="Controllers\PictureClassifiactionController.cs" />
     <Compile Include="Controllers\SearchEngineController.cs" />
     <Compile Include="Controllers\SubscriptionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805271308387_Initial.cs" />
+    <Compile Include="Migrations\201805271308387_Initial.Designer.cs">
+      <DependentUpon>201805271308387_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805271310310_addPicutreClass.cs" />
+    <Compile Include="Migrations\201805271310310_addPicutreClass.Designer.cs">
+      <DependentUpon>201805271310310_addPicutreClass.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -236,6 +245,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Discord\" />
+    <Folder Include="Views\PictureClassifiaction\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -252,6 +262,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201805271308387_Initial.resx">
+      <DependentUpon>201805271308387_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805271310310_addPicutreClass.resx">
+      <DependentUpon>201805271310310_addPicutreClass.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
