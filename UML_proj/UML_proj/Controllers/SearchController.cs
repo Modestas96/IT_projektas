@@ -20,30 +20,58 @@ namespace UML_proj.Controllers
         [HttpPost]
         public ActionResult Search(SearchViewModel searchParams)
         {
+            String txtQuery = "";
             int type = QueryType(searchParams);
             if(type == 0)
             {
-
+                return View("Search", new SearchViewModel());
+            }else if(type == 1)
+            {
+                txtQuery = searchParams.SearchEntry.TextQuery;
             }
-            var res =  new List<Dictionary<String, String>>();
+            else
+            {
+                ImageSearchController ISC = new ImageSearchController();
+                String gotRes = ISC.RecognizeImage(searchParams.SearchEntry.ImageQuery);
+                if (!ParseName(gotRes))
+                {
+                    return View("Search", new SearchViewModel());
+                }
+                txtQuery = gotRes;
+            }
+
             TextSearchController TSC = new TextSearchController();
-            res = TSC.FindProduct(searchParams.SearchEntry.TextQuery);
-            var dicTest = new Dictionary<String, String>();
-            dicTest["vardas"] = "pituhas";
-            dicTest["ImageSrc"] = "https://lbbfinal.files.wordpress.com/2015/01/logo.gif?w=720";
-            res.Add(dicTest);
-            res.Add(dicTest);
-            res.Add(dicTest);
-            searchParams.SearchResult = res;
+
+            var res = TSC.FindProduct(txtQuery);
+            var passableObj = new List<Dictionary<String, String> >();
+
+            foreach (var x in res){
+                
+                var tempMap = new Dictionary<String, String>();
+                tempMap["name"] = x.Item1.name;
+                tempMap["picture"] = x.Item1.picture;
+                tempMap["price"] = x.Item1.price.ToString();
+                tempMap["description"] = x.Item1.description;
+                tempMap["barcode"] = x.Item1.barcode;
+                tempMap["bestDeal"] = x.Item2;
+                passableObj.Add(tempMap);
+            }
+
+            searchParams.SearchResult = passableObj;
             return View("Search", searchParams);
         }
 
+        private bool ParseName(string gotRes)
+        {
+            return gotRes != "-1";
+        }
+
         private int QueryType(SearchViewModel searchParams) {         
-            if(searchParams == null)
-                return 0;
-            else if(searchParams.SearchEntry.TextQuery != null)
+            if(searchParams.SearchEntry.ImageQuery != null && searchParams.SearchEntry.ImageQuery.Length > 0)
                 return 1;
-            return 2;
+            else if(searchParams.SearchEntry.TextQuery != null)
+                return 2;
+            return 0;
         }
 
         // GET: Search/Details/5

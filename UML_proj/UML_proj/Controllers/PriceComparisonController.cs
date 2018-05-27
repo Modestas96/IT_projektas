@@ -7,28 +7,27 @@ using UML_proj.Models;
 
 namespace UML_proj.Controllers
 {
-    public class TextSearchController : Controller
+    public class PriceComparisonController : Controller
     {
-        ITProjektasDB db = new ITProjektasDB();
-        // GET: TextSearch
+        // GET: PriceComparison
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: TextSearch/Details/5
+        // GET: PriceComparison/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: TextSearch/Create
+        // GET: PriceComparison/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: TextSearch/Create
+        // POST: PriceComparison/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -44,17 +43,28 @@ namespace UML_proj.Controllers
             }
         }
 
-        internal List<Tuple<Product, String> > FindProduct(string textQuery)
+        internal string ComparePrice(Product x)
         {
-           return new ProductsController().GetItems(textQuery);
+            // bad idea
+            Shop dummy = new Shop();
+
+            ITProjektasDB db = new ITProjektasDB();
+            string resStr = "No deals for this item found.";
+            // Find cheapest
+            Product_in_shop inShopObj = db.Product_in_shop.Where(model => model.fk_Productid_Product == x.id_Product).OrderBy(model=>model.price).FirstOrDefault();
+            Shop d = dummy.GetShop(1);
+            if (d == null || inShopObj == null) return resStr;
+            resStr = "Best price found in the " + d.name + " shop of $" + inShopObj.price + ".";
+            return resStr;
         }
-        // GET: TextSearch/Edit/5
+
+        // GET: PriceComparison/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: TextSearch/Edit/5
+        // POST: PriceComparison/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -70,13 +80,13 @@ namespace UML_proj.Controllers
             }
         }
 
-        // GET: TextSearch/Delete/5
+        // GET: PriceComparison/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: TextSearch/Delete/5
+        // POST: PriceComparison/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
