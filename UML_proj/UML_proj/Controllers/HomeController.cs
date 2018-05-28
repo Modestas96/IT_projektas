@@ -12,6 +12,7 @@ namespace UML_proj.Controllers
         public ActionResult Index()
         {
             return View();
+			
         }
         public ActionResult Login()
         {
