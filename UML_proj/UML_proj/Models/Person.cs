@@ -27,10 +27,12 @@ namespace UML_proj.Models
         [StringLength(255)]
         public string last_name { get; set; }
 
-        [StringLength(255)]
+        [StringLength(225)]
+        [MinLength(5)]
         public string email { get; set; }
 
         [StringLength(255)]
+        [MinLength(7)]
         public string password { get; set; }
 
         [StringLength(255)]

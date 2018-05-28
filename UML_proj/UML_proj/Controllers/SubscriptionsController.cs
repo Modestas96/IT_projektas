@@ -24,11 +24,27 @@ namespace UML_proj.Controllers
         public ActionResult open_subscription_list()
         {
             int id = Int32.Parse(Session["UserID"].ToString());
-            subs.fk_Personid_Person = id;
-            var subscriptions = subs.select_personal_subs();
-            return View("Index",subscriptions);
+            //var subscriptions = subs.select_personal_subs();
+            return View("Index",get_subscriptions(id));
         }
 
+        public List<Subscription> get_subscriptions(int id)
+        {
+            if (id < 0 )
+            {
+                return new List<Subscription>();
+            }
+            subs.fk_Personid_Person = id;
+            var test = subs.select_personal_subs();
+            if(test.GetType() == typeof(List<Subscription>))
+            {
+                return test;
+            }else
+            {
+                return new List<Subscription>();
+            }
+             
+        }
         public ActionResult open_profile_page()
         {
 

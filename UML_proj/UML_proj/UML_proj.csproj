@@ -185,6 +185,10 @@
     <Compile Include="Migrations\201805271539543_AddedPictureUrl.Designer.cs">
       <DependentUpon>201805271539543_AddedPictureUrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805280918361_Prideta.cs" />
+    <Compile Include="Migrations\201805280918361_Prideta.Designer.cs">
+      <DependentUpon>201805280918361_Prideta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Models\SearchParameters.cs" />
@@ -300,6 +304,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805271539543_AddedPictureUrl.resx">
       <DependentUpon>201805271539543_AddedPictureUrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805280918361_Prideta.resx">
+      <DependentUpon>201805280918361_Prideta.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
