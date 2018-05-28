@@ -17,6 +17,7 @@ namespace UML_proj.Controllers
         public ActionResult Index()
         {
             return View();
+			
         }
 
         public bool send_entry(Newsletter_entry entry,string message)
