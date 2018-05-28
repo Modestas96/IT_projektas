@@ -31,7 +31,7 @@ namespace UML_proj.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }
 
-        public  Shop GetShop(int id)
+        public Shop GetShop(int id)
         {
             ITProjektasDB db = new ITProjektasDB();
             var res = db.Shops.Where(x => x.id_Shop == id).ToArray();
