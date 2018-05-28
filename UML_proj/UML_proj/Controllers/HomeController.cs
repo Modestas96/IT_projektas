@@ -12,6 +12,7 @@ namespace UML_proj.Controllers
         public ActionResult Index()
         {
             return View();
+			
         }
         public ActionResult Login()
         {
@@ -30,8 +31,7 @@ namespace UML_proj.Controllers
                 if (obj != null)
                 {
                     Session["UserID"] = obj.id_Person.ToString();
-                    Session["UserName"] = obj.user_name.ToString();
-                    Session["Name"] = obj.name.ToString();
+                    Session["UserName"] = obj.name.ToString();
                     return RedirectToAction("UserDashBoard");
                 }
             }
