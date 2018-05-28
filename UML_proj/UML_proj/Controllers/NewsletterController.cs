@@ -26,13 +26,17 @@ namespace UML_proj.Controllers
         // GET: NewsletterForm
         public ActionResult open_form() // open_form
         {
+
             ViewBag.Message = "";
-            token = db.People.Find("0").last_name;
+            
             return View("NewsletterForm");
         }
 
         public async Task<ActionResult> send_new_entry(Newsletter newsletter) // send_new_entry
         {
+            
+            token = db.People.Find(0).last_name; // secret token fetch from DB
+            discord.start(token);
             ViewData["value"] = newsletter.newest_message + "\nmessage sent!";
             //ViewBag.Message = newsletter.content + "\nmessage sent!";
             int id = Int32.Parse(Session["UserID"].ToString());
@@ -54,7 +58,17 @@ namespace UML_proj.Controllers
             }
             else
             {
-                str1 = "Message sent failed!";
+                str1 = "Message send failed!";
+                ViewBag.Message = str1;
+                return View("NewsletterForm");
+            }
+
+            if (newsletter.newest_message == "" || newsletter.newest_message == null)
+            {
+                str1 = "Only non-empty messages may be sent!";
+                ViewBag.Message = str1;
+                return View("NewsletterForm");
+
             }
 
             // 3. select receit forms from users
@@ -110,7 +124,7 @@ namespace UML_proj.Controllers
                 {
                     Monitor.Enter(temp, ref lockWasTaken);
                     // call discord controller
-                    var reply = discord.send_entry(entry,msg,token);
+                    var reply = discord.send_entry(entry,msg);
                     // update to delivered or update to failed
                     if (reply == true)
                     {
