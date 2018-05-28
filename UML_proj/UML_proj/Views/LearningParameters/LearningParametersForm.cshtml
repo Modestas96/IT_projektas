@@ -7,7 +7,7 @@
 
 <h2>LearningParametersForm</h2>
 
-@using (Html.BeginForm("Update", "LearningParameters"))
+@using (Html.BeginForm("Update", "LearningParameters", FormMethod.Post)) 
 {
     @Html.AntiForgeryToken()
     
@@ -16,34 +16,40 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.learning_speed, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Apsimokymo_greitis, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.learning_speed, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.learning_speed, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Apsimokymo_greitis, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Apsimokymo_greitis, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.optimization_method, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Svoriai, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.optimization_method, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.optimization_method, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Svoriai, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Svoriai, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.isPrimary, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Optimizavimo_metodas, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.isPrimary, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.isPrimary, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Optimizavimo_metodas, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Optimizavimo_metodas, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        @Html.HiddenFor(model => model.id_Search_parameters)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Yra_pagrindinis, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Yra_pagrindinis, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Yra_pagrindinis, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>

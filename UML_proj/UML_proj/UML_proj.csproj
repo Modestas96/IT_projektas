@@ -157,7 +157,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ImageSearchController.cs" />
     <Compile Include="Controllers\LearningParametersController.cs" />
     <Compile Include="Controllers\NewsletterController.cs" />
     <Compile Include="Global.asax.cs">
@@ -181,10 +180,15 @@
     <Compile Include="Migrations\201805271539543_AddedPictureUrl.cs" />
     <Compile Include="Migrations\201805271539543_AddedPictureUrl.Designer.cs">
       <DependentUpon>201805271539543_AddedPictureUrl.cs</DependentUpon>
+    <Compile Include="Migrations\201805271512586_rer.cs" />
+    <Compile Include="Migrations\201805271512586_rer.Designer.cs">
+      <DependentUpon>201805271512586_rer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805271515273_adding_recei_forms.cs" />
+    <Compile Include="Migrations\201805271515273_adding_recei_forms.Designer.cs">
+      <DependentUpon>201805271515273_adding_recei_forms.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\SearchViewModel.cs" />
-    <Compile Include="Models\SearchParameters.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Admin_level.cs" />
     <Compile Include="Models\ITProjektasDB.cs" />
@@ -205,7 +209,6 @@
     <Compile Include="Models\Unclassified_pictures.cs" />
     <Compile Include="Models\User_type.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\UnclassifiedPicutresModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -256,6 +259,17 @@
     <Content Include="Views\SearchEngine\OpenSearchEngine.cshtml" />
     <Content Include="Views\LearningParameters\GetLearningParameters.cshtml" />
     <Content Include="Views\PictureClassifiaction\getUnClassifiedPictures.cshtml" />
+    <Content Include="Views\Subscriptions\Create.cshtml" />
+    <Content Include="Views\Subscriptions\Delete.cshtml" />
+    <Content Include="Views\Subscriptions\Details.cshtml" />
+    <Content Include="Views\Subscriptions\Edit.cshtml" />
+    <Content Include="Views\Subscriptions\Index.cshtml" />
+    <Content Include="Views\Subscriptions\ProfilePage.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -263,6 +277,7 @@
     <Folder Include="Views\ImageSeaerch\" />
     <Folder Include="Views\PriceComparison\" />
     <Folder Include="Views\TextSearch\" />
+    <Folder Include="Views\Email\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -289,6 +304,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805271539543_AddedPictureUrl.resx">
       <DependentUpon>201805271539543_AddedPictureUrl.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805271512586_rer.resx">
+      <DependentUpon>201805271512586_rer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805271515273_adding_recei_forms.resx">
+      <DependentUpon>201805271515273_adding_recei_forms.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
