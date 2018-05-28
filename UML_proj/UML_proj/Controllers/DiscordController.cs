@@ -18,6 +18,7 @@ namespace UML_proj.Controllers
         {
             return View();
 			
+			
         }
 
         public bool send_entry(Newsletter_entry entry,string message)
