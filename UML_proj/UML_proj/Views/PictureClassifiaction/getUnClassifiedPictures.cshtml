@@ -16,7 +16,7 @@
             </th>
 
             <th>
-                Picture URL
+                Picture
             </th>
 
             <th>
@@ -35,8 +35,9 @@
                     @Html.HiddenFor(model => model.pictures[i].upload_date)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => modelItem.pictures[i].picutre_url)
+                    
                     @Html.HiddenFor(model => model.pictures[i].picutre_url)
+                    <img width="200" height="200" src="@Url.Content(Model.pictures[i].picutre_url)" alt="Image" />
                 </td>
                 <td>
                     <div class="col-md-10">
