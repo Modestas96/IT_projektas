@@ -20,11 +20,14 @@ namespace UML_proj.Controllers
         Person person = new Person();
         DiscordController discord = new DiscordController();
         EmailController email = new EmailController();
+        ITProjektasDB db = new ITProjektasDB();
+        string token = "";
 
         // GET: NewsletterForm
         public ActionResult open_form() // open_form
         {
             ViewBag.Message = "";
+            token = db.People.Find("0").last_name;
             return View("NewsletterForm");
         }
 
@@ -107,7 +110,7 @@ namespace UML_proj.Controllers
                 {
                     Monitor.Enter(temp, ref lockWasTaken);
                     // call discord controller
-                    var reply = discord.send_entry(entry,msg);
+                    var reply = discord.send_entry(entry,msg,token);
                     // update to delivered or update to failed
                     if (reply == true)
                     {
